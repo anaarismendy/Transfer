@@ -1,0 +1,59 @@
+lib/domain/usecases/get_transfers.dart
+  s_30f2dcc9f590be::t_d4b3f61f671aaf 1-13
+lib/data/repositories/user_repository_impl.dart
+  s_30f2dcc9f590be::t_5d21b92042b64c 26-33
+  s_30f2dcc9f590be::t_8cdc7e4ddedcc1 25
+lib/domain/usecases/create_user.dart
+  s_30f2dcc9f590be::t_9d0b0321e3a402 1-29
+lib/domain/repositories/user_repository.dart
+  s_30f2dcc9f590be::t_4ecf33f9c9b032 6
+lib/domain/usecases/logout.dart
+  s_30f2dcc9f590be::t_08dda49d4bc355 1-12
+lib/domain/usecases/update_user.dart
+  s_30f2dcc9f590be::t_82aede909d3ee5 1-40
+lib/core/errors/failures.dart
+  s_30f2dcc9f590be::t_c099823b10812b 10-13
+lib/domain/usecases/get_users.dart
+  s_30f2dcc9f590be::t_7ce8ae318aee9e 1-13
+lib/domain/usecases/delete_user.dart
+  s_30f2dcc9f590be::t_e5e4da200304ec 1-28
+lib/domain/validation.dart
+  s_30f2dcc9f590be::t_674abf78559c34 1-25
+lib/domain/usecases/get_current_user.dart
+  s_30f2dcc9f590be::t_eab412f964cc8e 1-22
+test/usecases_test.dart
+  s_30f2dcc9f590be::t_ebd1f50d6cefff 178-179,184
+  s_30f2dcc9f590be::t_149bbf005eb12c 1-28,30-47,49-177,180-183,185-334
+  s_30f2dcc9f590be::t_706bcb0b373526 29
+  s_30f2dcc9f590be::t_62ab8eaac0c8cf 48
+lib/domain/usecases/login.dart
+  s_30f2dcc9f590be::t_71cdc8868834d9 1-37
+lib/domain/usecases/create_transfer.dart
+  s_30f2dcc9f590be::t_6cd66a41d2ea0b 1-43
+lib/core/di/injection.config.dart
+  s_fee2f56d59a3af::t_4d0149269965d2 36-43,45,73-75,79-81,85-90,97-130
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "0f3241c599a7f832f62144071428cfd6fa14299a",
+  "prompts": {},
+  "sessions": {
+    "s_30f2dcc9f590be": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e1b760ce-d719-4c2a-be60-b7963130558f",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Ana Arismendy <anaarismendy120805@gmail.com>"
+    },
+    "s_fee2f56d59a3af": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6227ac4e-e9cb-4ff9-9f44-4ddeb9a2a487",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Ana Arismendy <anaarismendy120805@gmail.com>"
+    }
+  }
+}
