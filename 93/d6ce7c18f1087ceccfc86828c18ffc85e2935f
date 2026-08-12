@@ -1,0 +1,42 @@
+lib/core/di/database_module.dart
+  s_fee2f56d59a3af::t_78ecb7d997219f 1
+lib/core/errors/failures.dart
+  s_fee2f56d59a3af::t_b475208b6ef1ff 1
+lib/domain/usecases/seed_default_user.dart
+  s_fee2f56d59a3af::t_96ac9399ca3ac2 1
+lib/core/result.dart
+  s_30f2dcc9f590be::t_cc2e1e492c8b87 1
+lib/data/services/bcrypt_password_hasher.dart
+  s_30f2dcc9f590be::t_6034b6f0b65794 1
+lib/domain/entities/transfer.dart
+  s_30f2dcc9f590be::t_1935b6bc057aa0 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "93d6ce7c18f1087ceccfc86828c18ffc85e2935f",
+  "prompts": {},
+  "humans": {
+    "h_c31e701a374a87": {
+      "author": "Ana Arismendy <anaarismendy120805@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_30f2dcc9f590be": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e1b760ce-d719-4c2a-be60-b7963130558f",
+        "model": "unknown"
+      },
+      "human_author": "Ana Arismendy <anaarismendy120805@gmail.com>"
+    },
+    "s_fee2f56d59a3af": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6227ac4e-e9cb-4ff9-9f44-4ddeb9a2a487",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Ana Arismendy <anaarismendy120805@gmail.com>"
+    }
+  }
+}
