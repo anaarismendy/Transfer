@@ -7,6 +7,10 @@ class StorageFailure extends Failure {
   const StorageFailure([super.message = 'Error al acceder al almacenamiento']);
 }
 
+class ValidationFailure extends Failure {
+  const ValidationFailure(super.message);
+}
+
 class InvalidCredentialsFailure extends Failure {
   const InvalidCredentialsFailure([super.message = 'Usuario o contrasena incorrectos']);
 }

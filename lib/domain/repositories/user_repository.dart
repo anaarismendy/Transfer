@@ -3,6 +3,7 @@ import '../entities/user.dart';
 
 abstract class UserRepository {
   Future<Result<List<User>>> getAll();
+  Future<Result<User?>> getById(String id);
   Future<Result<User?>> findByEmail(String email);
 
   Future<Result<User>> create({

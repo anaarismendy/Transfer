@@ -23,6 +23,15 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
+  Future<Result<User?>> getById(String id) async {
+    try {
+      return Ok(await _local.getById(id));
+    } catch (_) {
+      return const Err(StorageFailure());
+    }
+  }
+
+  @override
   Future<Result<User?>> findByEmail(String email) async {
     try {
       return Ok(await _local.findByEmail(email));
