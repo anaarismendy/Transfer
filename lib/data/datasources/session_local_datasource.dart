@@ -1,8 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 
-/// Tabla llave-valor de una sola fila. Sin backend no hay token real:
-/// solo se guarda el id del usuario que inicio sesion.
 @lazySingleton
 class SessionLocalDataSource {
   static const _table = 'session';
@@ -11,8 +9,6 @@ class SessionLocalDataSource {
   final Database _db;
   SessionLocalDataSource(this._db);
 
-  /// `replace` para que iniciar sesion de nuevo sobrescriba en vez de fallar
-  /// por llave primaria duplicada.
   Future<void> save(String userId) => _db.insert(
         _table,
         {'key': _key, 'value': userId},

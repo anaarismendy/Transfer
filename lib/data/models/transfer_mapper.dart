@@ -7,8 +7,6 @@ extension TransferMapper on Transfer {
         'destination_user_id': destinationUserId,
         'amount_in_cents': amountInCents,
         'description': description,
-        // SQLite no tiene tipo fecha: se guarda el epoch en milisegundos,
-        // que ademas ordena igual como numero que como fecha.
         'created_at': createdAt.millisecondsSinceEpoch,
       };
 }

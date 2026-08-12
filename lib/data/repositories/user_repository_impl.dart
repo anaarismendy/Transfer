@@ -38,8 +38,6 @@ class UserRepositoryImpl implements UserRepository {
     required String passwordHash,
   }) async {
     final user = User(
-      // uuid v4 y no un timestamp: en Windows el reloj tiene resolucion de
-      // milisegundos, asi que dos creaciones seguidas generaban el mismo id.
       id: const Uuid().v4(),
       name: name.trim(),
       email: email.trim().toLowerCase(),
@@ -50,13 +48,6 @@ class UserRepositoryImpl implements UserRepository {
       await _local.insert(user);
       return Ok(user);
     } on DatabaseException catch (e) {
-      // El UNIQUE de la columna email es lo que garantiza que no haya
-      // duplicados, no un chequeo previo en Dart: entre el chequeo y el
-      // insert cabe otra escritura.
-      //
-      // Se nombra la columna a proposito: sin ella una colision de llave
-      // primaria se reportaria como "correo duplicado" y mandaria a depurar
-      // al lugar equivocado.
       if (e.isUniqueConstraintError('users.email')) {
         return const Err(DuplicateEmailFailure());
       }
@@ -87,8 +78,6 @@ class UserRepositoryImpl implements UserRepository {
       final affected = await _local.delete(id);
       return affected == 0 ? const Err(NotFoundFailure()) : const Ok(null);
     } on DatabaseException catch (_) {
-      // Borrar una fila por id solo puede fallar por la llave foranea de
-      // transfers; cualquier otro error de esquema saldria en desarrollo.
       return const Err(UserHasTransfersFailure());
     } catch (_) {
       return const Err(StorageFailure());

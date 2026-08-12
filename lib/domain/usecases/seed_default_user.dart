@@ -1,10 +1,8 @@
-import 'package:injectable/injectable.dart';
+﻿import 'package:injectable/injectable.dart';
 
 import '../repositories/user_repository.dart';
 import '../services/password_hasher.dart';
 
-/// Sin backend la base arranca vacia, asi que no habria con que iniciar sesion.
-/// Credenciales documentadas en el README: admin@test.com / Admin123
 @injectable
 class SeedDefaultUser {
   static const email = 'admin@test.com';

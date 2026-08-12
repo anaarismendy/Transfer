@@ -3,14 +3,11 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-/// Abre la base y define el esquema. Es el unico archivo con SQL de estructura.
 class AppDatabase {
   static const _fileName = 'prueba_tecnica.db';
   static const _version = 1;
 
   static Future<Database> open() async {
-    // sqflite trae SQLite nativo en Android/iOS/macOS; en Windows y Linux
-    // hay que usar el motor por FFI.
     if (!Platform.isAndroid && !Platform.isIOS && !Platform.isMacOS) {
       sqfliteFfiInit();
       databaseFactory = databaseFactoryFfi;
@@ -24,11 +21,8 @@ class AppDatabase {
     );
   }
 
-  /// Misma base, mismo esquema, sin tocar disco. Para tests.
   static Future<Database> openInMemory() async {
     sqfliteFfiInit();
-    // SQLite reutiliza la base `:memory:` entre aperturas, asi que sin este
-    // borrado los datos de un test se filtran al siguiente.
     await databaseFactoryFfi.deleteDatabase(inMemoryDatabasePath);
     return databaseFactoryFfi.openDatabase(
       inMemoryDatabasePath,
@@ -40,8 +34,6 @@ class AppDatabase {
     );
   }
 
-  /// SQLite ignora las llaves foraneas si no se activan explicitamente,
-  /// y hay que hacerlo por conexion, no una sola vez.
   static Future<void> _configure(Database db) => db.execute('PRAGMA foreign_keys = ON');
 
   static Future<void> _createSchema(Database db, int version) async {

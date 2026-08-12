@@ -1,7 +1,5 @@
-import 'errors/failures.dart';
+﻿import 'errors/failures.dart';
 
-/// Equivalente a `Either<Failure, T>` sin depender de dartz/fpdart:
-/// las sealed classes de Dart 3 ya dan exhaustividad en el `switch`.
 sealed class Result<T> {
   const Result();
 

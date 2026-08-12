@@ -1,5 +1,3 @@
-/// Entidad de dominio. Sin Hive, sin Flutter, sin paquetes externos.
-/// Nunca lleva la contrasena en claro, solo el hash.
 class User {
   final String id;
   final String name;
