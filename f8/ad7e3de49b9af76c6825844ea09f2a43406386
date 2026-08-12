@@ -1,0 +1,77 @@
+lib/domain/repositories/user_repository.dart
+  s_30f2dcc9f590be::t_0154b83109e80b 1-18
+lib/data/models/transfer_mapper.dart
+  s_30f2dcc9f590be::t_34930e2fda5b87 1-41
+lib/domain/repositories/transfer_repository.dart
+  s_30f2dcc9f590be::t_2a90308bf91064 1-13
+lib/core/result.dart
+  s_30f2dcc9f590be::t_1a5556c3af5032 1-23
+lib/data/models/user_mapper.dart
+  s_30f2dcc9f590be::t_0849bf5992ff3f 1-28
+lib/data/datasources/session_local_datasource.dart
+  s_30f2dcc9f590be::t_63f0421ce1eeab 1-16
+lib/data/repositories/user_repository_impl.dart
+  s_30f2dcc9f590be::t_0755e93a6fc6d5 1-76
+lib/domain/usecases/seed_default_user.dart
+  s_30f2dcc9f590be::t_2d8365a33c77f0 1-28
+lib/core/di/hive_module.dart
+  s_30f2dcc9f590be::t_5c4a560d425949 1-26
+lib/data/datasources/transfer_local_datasource.dart
+  s_30f2dcc9f590be::t_d02a24ea86c4c6 1-20
+lib/domain/entities/transfer.dart
+  s_30f2dcc9f590be::t_8cb7cdef657e85 1-21
+lib/data/datasources/user_local_datasource.dart
+  s_30f2dcc9f590be::t_9e01610ac4cf3e 1-35
+lib/domain/services/password_hasher.dart
+  s_30f2dcc9f590be::t_c49b14f1df9b4d 1-6
+lib/data/repositories/auth_repository_impl.dart
+  s_30f2dcc9f590be::t_9dfd92da6aec3f 1-41
+lib/main.dart
+  s_30f2dcc9f590be::t_293ecfc87f12b5 2,5,9,11
+test/data_layer_test.dart
+  s_30f2dcc9f590be::t_8a008894e958bd 1-82
+lib/domain/entities/user.dart
+  s_30f2dcc9f590be::t_126f928325337e 1-22
+lib/core/errors/failures.dart
+  s_30f2dcc9f590be::t_0a2816f6bdace8 1-32
+lib/data/services/bcrypt_password_hasher.dart
+  s_30f2dcc9f590be::t_c5f213499cb20f 1-16
+lib/domain/repositories/auth_repository.dart
+  s_30f2dcc9f590be::t_063945ff4f6637 1-9
+lib/data/repositories/transfer_repository_impl.dart
+  s_30f2dcc9f590be::t_5eed36664e1a11 1-45
+lib/core/di/injection.config.dart
+  s_fee2f56d59a3af::t_9af3a57c430f0b 13,15-37,41,44-92,96-97
+linux/flutter/generated_plugins.cmake
+  s_fee2f56d59a3af::t_030028761f71bd 9
+windows/flutter/generated_plugins.cmake
+  s_fee2f56d59a3af::t_4a215c44c7ca7b 9
+pubspec.lock
+  s_30f2dcc9f590be::t_392f309e5ebab4 52-59,148-155,204-211,302-325,374-405,502-509,526-589,630-637,779-786,805
+pubspec.yaml
+  s_30f2dcc9f590be::t_48285ea8256761 10,16-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "f8ad7e3de49b9af76c6825844ea09f2a43406386",
+  "prompts": {},
+  "sessions": {
+    "s_30f2dcc9f590be": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e1b760ce-d719-4c2a-be60-b7963130558f",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Ana Arismendy <anaarismendy120805@gmail.com>"
+    },
+    "s_fee2f56d59a3af": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6227ac4e-e9cb-4ff9-9f44-4ddeb9a2a487",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Ana Arismendy <anaarismendy120805@gmail.com>"
+    }
+  }
+}
