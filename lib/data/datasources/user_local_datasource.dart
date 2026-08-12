@@ -1,35 +1,47 @@
-import 'package:hive_ce/hive.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sqflite/sqflite.dart';
 
 import '../../domain/entities/user.dart';
 import '../models/user_mapper.dart';
 
-/// Acceso crudo a Hive. Lanza si algo falla; traducir a Failure es trabajo
-/// del repositorio. Esa es la separacion: aqui almacenamiento, alla errores.
+/// Acceso crudo a la tabla `users`. Lanza si algo falla; traducir a Failure
+/// es trabajo del repositorio. Aqui almacenamiento, alla errores.
 @lazySingleton
 class UserLocalDataSource {
-  final Box _box;
-  UserLocalDataSource(@Named('users') this._box);
+  static const _table = 'users';
 
-  List<User> getAll() => _box.values.map((e) => userFromMap(e as Map)).toList();
+  final Database _db;
+  UserLocalDataSource(this._db);
 
-  User? getById(String id) {
-    final raw = _box.get(id);
-    return raw == null ? null : userFromMap(raw as Map);
+  Future<List<User>> getAll() async {
+    final rows = await _db.query(_table, orderBy: 'name COLLATE NOCASE');
+    return rows.map(userFromRow).toList();
   }
 
-  User? findByEmail(String email) {
-    final target = email.trim().toLowerCase();
-    for (final raw in _box.values) {
-      final user = userFromMap(raw as Map);
-      if (user.email.toLowerCase() == target) return user;
-    }
-    return null;
+  Future<User?> getById(String id) async {
+    final rows = await _db.query(_table, where: 'id = ?', whereArgs: [id], limit: 1);
+    return rows.isEmpty ? null : userFromRow(rows.first);
   }
 
-  Future<void> save(User user) => _box.put(user.id, user.toMap());
+  /// La columna `email` es COLLATE NOCASE, asi que la comparacion ya ignora
+  /// mayusculas sin necesidad de LOWER() ni de recorrer la tabla.
+  Future<User?> findByEmail(String email) async {
+    final rows = await _db.query(
+      _table,
+      where: 'email = ?',
+      whereArgs: [email.trim()],
+      limit: 1,
+    );
+    return rows.isEmpty ? null : userFromRow(rows.first);
+  }
 
-  Future<void> delete(String id) => _box.delete(id);
+  Future<void> insert(User user) => _db.insert(_table, user.toRow());
 
-  bool get isEmpty => _box.isEmpty;
+  Future<int> update(User user) =>
+      _db.update(_table, user.toRow(), where: 'id = ?', whereArgs: [user.id]);
+
+  Future<int> delete(String id) => _db.delete(_table, where: 'id = ?', whereArgs: [id]);
+
+  Future<int> count() async =>
+      Sqflite.firstIntValue(await _db.rawQuery('SELECT COUNT(*) FROM $_table')) ?? 0;
 }

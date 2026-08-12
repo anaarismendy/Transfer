@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../core/errors/failures.dart';
 import '../../core/result.dart';
@@ -14,7 +15,7 @@ class TransferRepositoryImpl implements TransferRepository {
   @override
   Future<Result<List<Transfer>>> getAll() async {
     try {
-      return Ok(_local.getAll());
+      return Ok(await _local.getAll());
     } catch (_) {
       return const Err(StorageFailure());
     }
@@ -27,16 +28,18 @@ class TransferRepositoryImpl implements TransferRepository {
     required int amountInCents,
     String? description,
   }) async {
+    final trimmed = description?.trim();
+    final transfer = Transfer(
+      id: const Uuid().v4(),
+      sourceUserId: sourceUserId,
+      destinationUserId: destinationUserId,
+      amountInCents: amountInCents,
+      createdAt: DateTime.now(),
+      description: (trimmed == null || trimmed.isEmpty) ? null : trimmed,
+    );
+
     try {
-      final transfer = Transfer(
-        id: DateTime.now().microsecondsSinceEpoch.toString(),
-        sourceUserId: sourceUserId,
-        destinationUserId: destinationUserId,
-        amountInCents: amountInCents,
-        createdAt: DateTime.now(),
-        description: description?.trim().isEmpty ?? true ? null : description!.trim(),
-      );
-      await _local.save(transfer);
+      await _local.insert(transfer);
       return Ok(transfer);
     } catch (_) {
       return const Err(StorageFailure());

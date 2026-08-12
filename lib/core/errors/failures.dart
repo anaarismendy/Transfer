@@ -30,3 +30,11 @@ class SameUserTransferFailure extends Failure {
 class InvalidAmountFailure extends Failure {
   const InvalidAmountFailure([super.message = 'El valor debe ser mayor a cero']);
 }
+
+/// La llave foranea de `transfers` impide borrar un usuario con movimientos:
+/// dejaria transferencias apuntando a alguien que no existe.
+class UserHasTransfersFailure extends Failure {
+  const UserHasTransfersFailure([
+    super.message = 'No se puede eliminar un usuario con transferencias registradas',
+  ]);
+}

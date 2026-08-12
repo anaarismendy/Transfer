@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hive_ce_flutter/hive_flutter.dart';
 
 import 'core/di/injection.dart';
 import 'domain/usecases/seed_default_user.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();
   await configureDependencies();
   await getIt<SeedDefaultUser>()();
   runApp(const MainApp());

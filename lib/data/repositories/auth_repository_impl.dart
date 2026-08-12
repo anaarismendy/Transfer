@@ -23,7 +23,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Result<String?>> currentSessionUserId() async {
     try {
-      return Ok(_session.read());
+      return Ok(await _session.read());
     } catch (_) {
       return const Err(StorageFailure());
     }

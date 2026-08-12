@@ -1,27 +1,27 @@
 import '../../domain/entities/user.dart';
 
-/// Traduccion entidad <-> mapa persistido. Vive en data para que `User` no
-/// sepa nada de como se guarda.
+/// Traduccion entidad <-> fila de la tabla `users`. Vive en data para que
+/// `User` no sepa nada de columnas ni de SQL.
 extension UserMapper on User {
-  Map<String, dynamic> toMap() => {
+  Map<String, Object?> toRow() => {
         'id': id,
         'name': name,
         'email': email,
-        'passwordHash': passwordHash,
+        'password_hash': passwordHash,
       };
 }
 
-/// Leer del disco es una frontera de confianza: el archivo puede estar
-/// corrupto o venir de una version anterior del modelo. Si algo no cuadra
-/// lanza, y el repositorio lo traduce a StorageFailure.
-User userFromMap(Map<dynamic, dynamic> map) {
-  final id = map['id'];
-  final name = map['name'];
-  final email = map['email'];
-  final passwordHash = map['passwordHash'];
+/// Leer de la base es una frontera de confianza: la fila puede venir de una
+/// version anterior del esquema. Si algo no cuadra lanza, y el repositorio
+/// lo traduce a StorageFailure.
+User userFromRow(Map<String, Object?> row) {
+  final id = row['id'];
+  final name = row['name'];
+  final email = row['email'];
+  final passwordHash = row['password_hash'];
 
   if (id is! String || name is! String || email is! String || passwordHash is! String) {
-    throw const FormatException('Registro de usuario invalido');
+    throw const FormatException('Fila de usuario invalida');
   }
 
   return User(id: id, name: name, email: email, passwordHash: passwordHash);

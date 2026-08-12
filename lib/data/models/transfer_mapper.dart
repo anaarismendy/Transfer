@@ -1,25 +1,25 @@
 import '../../domain/entities/transfer.dart';
 
 extension TransferMapper on Transfer {
-  Map<String, dynamic> toMap() => {
+  Map<String, Object?> toRow() => {
         'id': id,
-        'sourceUserId': sourceUserId,
-        'destinationUserId': destinationUserId,
-        'amountInCents': amountInCents,
-        // Se guarda como int en lugar de DateTime: independiente de zona
-        // horaria y de como cada backend serialice fechas.
-        'createdAt': createdAt.millisecondsSinceEpoch,
+        'source_user_id': sourceUserId,
+        'destination_user_id': destinationUserId,
+        'amount_in_cents': amountInCents,
         'description': description,
+        // SQLite no tiene tipo fecha: se guarda el epoch en milisegundos,
+        // que ademas ordena igual como numero que como fecha.
+        'created_at': createdAt.millisecondsSinceEpoch,
       };
 }
 
-Transfer transferFromMap(Map<dynamic, dynamic> map) {
-  final id = map['id'];
-  final sourceUserId = map['sourceUserId'];
-  final destinationUserId = map['destinationUserId'];
-  final amountInCents = map['amountInCents'];
-  final createdAt = map['createdAt'];
-  final description = map['description'];
+Transfer transferFromRow(Map<String, Object?> row) {
+  final id = row['id'];
+  final sourceUserId = row['source_user_id'];
+  final destinationUserId = row['destination_user_id'];
+  final amountInCents = row['amount_in_cents'];
+  final createdAt = row['created_at'];
+  final description = row['description'];
 
   if (id is! String ||
       sourceUserId is! String ||
@@ -27,7 +27,7 @@ Transfer transferFromMap(Map<dynamic, dynamic> map) {
       amountInCents is! int ||
       createdAt is! int ||
       (description != null && description is! String)) {
-    throw const FormatException('Registro de transferencia invalido');
+    throw const FormatException('Fila de transferencia invalida');
   }
 
   return Transfer(

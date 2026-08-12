@@ -15,12 +15,18 @@ void main() {
         passwordHash: r'$2a$10$abc',
       );
 
-      final restored = userFromMap(original.toMap());
+      final restored = userFromRow(original.toRow());
 
       expect(restored.id, original.id);
       expect(restored.name, original.name);
       expect(restored.email, original.email);
       expect(restored.passwordHash, original.passwordHash);
+    });
+
+    test('las columnas usan snake_case, como la tabla', () {
+      const user = User(id: '1', name: 'Ana', email: 'a@b.c', passwordHash: 'h');
+
+      expect(user.toRow().keys, containsAll(['id', 'name', 'email', 'password_hash']));
     });
 
     test('transferencia sobrevive el viaje de ida y vuelta', () {
@@ -33,7 +39,7 @@ void main() {
         description: 'Arriendo',
       );
 
-      final restored = transferFromMap(original.toMap());
+      final restored = transferFromRow(original.toRow());
 
       expect(restored.amountInCents, 150000);
       expect(restored.createdAt, original.createdAt);
@@ -49,13 +55,13 @@ void main() {
         createdAt: DateTime.fromMillisecondsSinceEpoch(0),
       );
 
-      expect(transferFromMap(original.toMap()).description, isNull);
+      expect(transferFromRow(original.toRow()).description, isNull);
     });
 
-    test('un registro corrupto lanza en vez de devolver datos basura', () {
-      expect(() => userFromMap({'id': '1'}), throwsFormatException);
+    test('una fila corrupta lanza en vez de devolver datos basura', () {
+      expect(() => userFromRow({'id': '1'}), throwsFormatException);
       expect(
-        () => transferFromMap({'id': 't1', 'amountInCents': 'mucho'}),
+        () => transferFromRow({'id': 't1', 'amount_in_cents': 'mucho'}),
         throwsFormatException,
       );
     });
