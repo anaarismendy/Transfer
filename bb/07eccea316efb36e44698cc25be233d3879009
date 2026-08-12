@@ -1,0 +1,71 @@
+lib/presentation/pages/home_page.dart
+  s_30f2dcc9f590be::t_71cdb7e09d393f 8,20,30-32,34-47,50-69,71-126
+  s_30f2dcc9f590be::t_ddf6919116b9a0 1-7,9-19,21-29,33,48-49,70,127-132
+test/login_flow_test.dart
+  s_30f2dcc9f590be::t_b0be8207844a48 59-71
+  s_30f2dcc9f590be::t_acfd32b9a6615b 82
+  s_30f2dcc9f590be::t_689a1a4d0fdbc4 93
+  s_30f2dcc9f590be::t_fcdb118e3ed17f 155,158
+  s_30f2dcc9f590be::t_7addf8dc893b2e 1-58,72-81,83-92,94-111,113-143,145-146,148-154,156-157,159-162
+  s_30f2dcc9f590be::t_93cfaaebfb1d8d 144,147
+  s_30f2dcc9f590be::t_0148bf73a99194 112
+lib/presentation/pages/users_page.dart
+  s_30f2dcc9f590be::t_1f900a4046266c 108
+  s_30f2dcc9f590be::t_97e2806c5288a1 17,22-24
+  s_30f2dcc9f590be::t_04d3382617f7d9 1-16,18-21,25-107,109-251
+lib/core/theme.dart
+  s_30f2dcc9f590be::t_9129054232f6a9 1-2,11-23,25-26,33-38,40,43-50,52-55,57-58,60-62,64-66,68,70-72,75-80,83-87
+  s_30f2dcc9f590be::t_29f5902158c14e 3-10,24,27-32,39,41-42,51,56,59,63,67,69,73-74,81-82
+lib/main.dart
+  s_30f2dcc9f590be::t_952982a6fdc9d2 2,5,7-9,23-29,34-48
+  s_30f2dcc9f590be::t_ff6ea25f4a5c2d 49-51
+test/users_flow_test.dart
+  s_30f2dcc9f590be::t_9466b0017c87f1 86-89
+  s_30f2dcc9f590be::t_95b664d0709a3e 2-59,61-85,90-101,104-111,114-120,123-140,143-161,164-170,172-174,177-181,184-189,192,194-195,198-201
+  s_30f2dcc9f590be::t_3b7ed7d8c6b943 60
+  s_fee2f56d59a3af::t_f81bd72fefd57f 1,102-103,112-113,121-122,141-142,162-163,171,175-176,182-183,190-191,193,196-197,202
+lib/presentation/widgets/wordmark.dart
+  s_30f2dcc9f590be::t_c2d6b081a6098e 7,14-16,26,29,32,35-36
+  s_30f2dcc9f590be::t_80e4a2cb3f739a 1-6,8-13,17-25,27-28,30-31,33-34,37-47
+lib/presentation/blocs/auth_bloc.dart
+  s_30f2dcc9f590be::t_3fbc221b4bd708 1-86
+lib/presentation/pages/login_page.dart
+  s_30f2dcc9f590be::t_742ef3a7c15ba1 62-63
+  s_30f2dcc9f590be::t_215fada11b93e7 51
+  s_30f2dcc9f590be::t_9dc105c27ecae3 152,163-166
+  s_30f2dcc9f590be::t_e341e51dbbfee2 1-39,41-48,52,74,76-108,110-114,117-138,142-151,153-158,160-162,167-179,182,185,187,190,192-197
+  s_30f2dcc9f590be::t_988e5677f54226 40,115,139-141,159,180,186,189,191
+  s_30f2dcc9f590be::t_054f803be36b89 49-50,53-61,64-73,75
+  s_30f2dcc9f590be::t_6884cb6700e8ba 109,116
+  s_30f2dcc9f590be::t_ecf7e5e17aee65 181,183-184,188
+lib/presentation/blocs/users_bloc.dart
+  s_30f2dcc9f590be::t_586303722ea699 1-114
+lib/presentation/pages/user_form_page.dart
+  s_30f2dcc9f590be::t_5044d8e6f16b92 1-170
+lib/core/di/injection.config.dart
+  s_fee2f56d59a3af::t_9205bdaacb862a 46-47,133-147
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "bb07eccea316efb36e44698cc25be233d3879009",
+  "prompts": {},
+  "sessions": {
+    "s_30f2dcc9f590be": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e1b760ce-d719-4c2a-be60-b7963130558f",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Ana Arismendy <anaarismendy120805@gmail.com>"
+    },
+    "s_fee2f56d59a3af": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6227ac4e-e9cb-4ff9-9f44-4ddeb9a2a487",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Ana Arismendy <anaarismendy120805@gmail.com>"
+    }
+  }
+}
