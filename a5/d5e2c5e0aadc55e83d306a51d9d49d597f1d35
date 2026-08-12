@@ -1,0 +1,207 @@
+lib/core/di/injection.config.dart
+  s_fee2f56d59a3af::t_f266cc151900ec 1-24
+linux/flutter/generated_plugin_registrant.cc
+  s_fee2f56d59a3af::t_8b7f26fc691026 1-11
+linux/flutter/generated_plugin_registrant.h
+  s_fee2f56d59a3af::t_e37940b39feb33 1-15
+linux/flutter/generated_plugins.cmake
+  s_fee2f56d59a3af::t_869b96b68a58fb 1-23
+macos/Flutter/GeneratedPluginRegistrant.swift
+  s_fee2f56d59a3af::t_47c7d52d29f5c9 1-10
+windows/flutter/generated_plugin_registrant.cc
+  s_fee2f56d59a3af::t_074375cec65866 1-11
+windows/flutter/generated_plugin_registrant.h
+  s_fee2f56d59a3af::t_f693c104184308 1-15
+windows/flutter/generated_plugins.cmake
+  s_fee2f56d59a3af::t_86658497137fe0 1-23
+.gitignore
+  s_fee2f56d59a3af::t_8098e5780d7d4e 1-45
+.metadata
+  s_fee2f56d59a3af::t_c11e846c0e9933 1-45
+README.md
+  s_fee2f56d59a3af::t_aa57b8c665dfb5 1-3
+analysis_options.yaml
+  s_fee2f56d59a3af::t_5b26182d9fede7 1
+android/.gitignore
+  s_fee2f56d59a3af::t_3a2e9b31c1be63 1-14
+android/app/build.gradle.kts
+  s_fee2f56d59a3af::t_a55232df8d9396 1-45
+android/app/src/debug/AndroidManifest.xml
+  s_fee2f56d59a3af::t_adf120dc82bb2d 1-7
+android/app/src/main/AndroidManifest.xml
+  s_fee2f56d59a3af::t_459528ced68d06 1-45
+android/app/src/main/kotlin/com/example/prueba_tecnica/MainActivity.kt
+  s_fee2f56d59a3af::t_a7a815481553b4 1-5
+android/app/src/main/res/drawable-v21/launch_background.xml
+  s_fee2f56d59a3af::t_e235a7e83195a6 1-12
+android/app/src/main/res/drawable/launch_background.xml
+  s_fee2f56d59a3af::t_fe7a8c322009e6 1-12
+android/app/src/main/res/values-night/styles.xml
+  s_fee2f56d59a3af::t_e30567c841dfb0 1-18
+android/app/src/main/res/values/styles.xml
+  s_fee2f56d59a3af::t_f493718f75cc4b 1-18
+android/app/src/profile/AndroidManifest.xml
+  s_fee2f56d59a3af::t_6cf35e1031139d 1-7
+android/build.gradle.kts
+  s_fee2f56d59a3af::t_15edff12b3e6ca 1-24
+android/gradle.properties
+  s_fee2f56d59a3af::t_831188304b4414 1-6
+android/gradle/wrapper/gradle-wrapper.properties
+  s_fee2f56d59a3af::t_7b3c304a1f2ba0 1-5
+android/settings.gradle.kts
+  s_fee2f56d59a3af::t_7d2280657d10c4 1-26
+ios/.gitignore
+  s_fee2f56d59a3af::t_7cdeef5a505efb 1-34
+ios/Flutter/AppFrameworkInfo.plist
+  s_fee2f56d59a3af::t_660a3dcb580c15 1-24
+ios/Flutter/Debug.xcconfig
+  s_fee2f56d59a3af::t_8251259df356b8 1
+ios/Flutter/Release.xcconfig
+  s_fee2f56d59a3af::t_f0bd6402880d7b 1
+ios/Runner.xcodeproj/project.pbxproj
+  s_fee2f56d59a3af::t_b6ff5ae397e017 1-644
+ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+  s_fee2f56d59a3af::t_5b8c67d845716b 1-7
+ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+  s_fee2f56d59a3af::t_67d50759b249d9 1-8
+ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+  s_fee2f56d59a3af::t_99a6a238297010 1-8
+ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme
+  s_fee2f56d59a3af::t_e591c07600450b 1-119
+ios/Runner.xcworkspace/contents.xcworkspacedata
+  s_fee2f56d59a3af::t_56b0fa75db1888 1-7
+ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+  s_fee2f56d59a3af::t_accf9e2f77781a 1-8
+ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+  s_fee2f56d59a3af::t_e056f525b4c5ce 1-8
+ios/Runner/AppDelegate.swift
+  s_fee2f56d59a3af::t_1e57ae7b3bcff8 1-16
+ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json
+  s_fee2f56d59a3af::t_cd0f643f410081 1-122
+ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json
+  s_fee2f56d59a3af::t_9b5f458443d410 1-23
+ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md
+  s_fee2f56d59a3af::t_0e65deb30bdacc 1-5
+ios/Runner/Base.lproj/LaunchScreen.storyboard
+  s_fee2f56d59a3af::t_0705a66f480a53 1-37
+ios/Runner/Base.lproj/Main.storyboard
+  s_fee2f56d59a3af::t_735954f1fe8baf 1-26
+ios/Runner/Info.plist
+  s_fee2f56d59a3af::t_3478a3ae2f9d4f 1-70
+ios/Runner/Runner-Bridging-Header.h
+  s_fee2f56d59a3af::t_76059b41e494c6 1
+ios/Runner/SceneDelegate.swift
+  s_fee2f56d59a3af::t_25e8c37047a651 1-6
+ios/RunnerTests/RunnerTests.swift
+  s_fee2f56d59a3af::t_df99b09bcaccea 1-12
+lib/core/di/injection.dart
+  s_fee2f56d59a3af::t_43d467bfd53c44 1-9
+lib/main.dart
+  s_fee2f56d59a3af::t_614ad63ec4240a 1-24
+linux/.gitignore
+  s_fee2f56d59a3af::t_5e3af027214348 1
+linux/CMakeLists.txt
+  s_fee2f56d59a3af::t_738f04bbf6a4c9 1-128
+linux/flutter/CMakeLists.txt
+  s_fee2f56d59a3af::t_4c3f00c0443607 1-88
+linux/runner/CMakeLists.txt
+  s_fee2f56d59a3af::t_64ab40601db5bf 1-26
+linux/runner/main.cc
+  s_fee2f56d59a3af::t_198ae9cfbff511 1-6
+linux/runner/my_application.cc
+  s_fee2f56d59a3af::t_0e1da6dc04af3e 1-148
+linux/runner/my_application.h
+  s_fee2f56d59a3af::t_ff45da9864e5fa 1-21
+macos/.gitignore
+  s_fee2f56d59a3af::t_3e3d43127414b5 1-7
+macos/Flutter/Flutter-Debug.xcconfig
+  s_fee2f56d59a3af::t_eefe3acc206805 1
+macos/Flutter/Flutter-Release.xcconfig
+  s_fee2f56d59a3af::t_9439da32e58764 1
+macos/Runner.xcodeproj/project.pbxproj
+  s_fee2f56d59a3af::t_afad46514e3cb8 1-729
+macos/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+  s_fee2f56d59a3af::t_a2741697973fb8 1-8
+macos/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme
+  s_fee2f56d59a3af::t_15ee17672451f3 1-117
+macos/Runner.xcworkspace/contents.xcworkspacedata
+  s_fee2f56d59a3af::t_d7b49592b0d27b 1-7
+macos/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+  s_fee2f56d59a3af::t_eceda67edb5195 1-8
+macos/Runner/AppDelegate.swift
+  s_fee2f56d59a3af::t_165000992260e8 1-13
+macos/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json
+  s_fee2f56d59a3af::t_b143870c840936 1-68
+macos/Runner/Base.lproj/MainMenu.xib
+  s_fee2f56d59a3af::t_e584cde6dccbcb 1-343
+macos/Runner/Configs/AppInfo.xcconfig
+  s_fee2f56d59a3af::t_6ac3ea99102acd 1-14
+macos/Runner/Configs/Debug.xcconfig
+  s_fee2f56d59a3af::t_d9826551ffbd65 1-2
+macos/Runner/Configs/Release.xcconfig
+  s_fee2f56d59a3af::t_13e93226160f4f 1-2
+macos/Runner/Configs/Warnings.xcconfig
+  s_fee2f56d59a3af::t_04a4e142e6c9c3 1-13
+macos/Runner/DebugProfile.entitlements
+  s_fee2f56d59a3af::t_b07728b669cec6 1-12
+macos/Runner/Info.plist
+  s_fee2f56d59a3af::t_8679e4f7fbe552 1-32
+macos/Runner/MainFlutterWindow.swift
+  s_fee2f56d59a3af::t_c5076d14a51c4c 1-15
+macos/Runner/Release.entitlements
+  s_fee2f56d59a3af::t_b33f294d97a2e5 1-8
+macos/RunnerTests/RunnerTests.swift
+  s_fee2f56d59a3af::t_53240b1abeb420 1-12
+pubspec.lock
+  s_fee2f56d59a3af::t_52f0c05491ca05 1-637
+pubspec.yaml
+  s_fee2f56d59a3af::t_547d186642622c 1-26
+web/index.html
+  s_fee2f56d59a3af::t_32507072f79bc7 1-46
+web/manifest.json
+  s_fee2f56d59a3af::t_e1525e01922b14 1-35
+windows/.gitignore
+  s_fee2f56d59a3af::t_0e3c430731063d 1-17
+windows/CMakeLists.txt
+  s_fee2f56d59a3af::t_5881e5781b964c 1-108
+windows/flutter/CMakeLists.txt
+  s_fee2f56d59a3af::t_1d39b30a09a1f2 1-109
+windows/runner/CMakeLists.txt
+  s_fee2f56d59a3af::t_b3bd63ed7df8b1 1-40
+windows/runner/Runner.rc
+  s_fee2f56d59a3af::t_5125f203b09212 1-121
+windows/runner/flutter_window.cpp
+  s_fee2f56d59a3af::t_f8496ce4359590 1-71
+windows/runner/flutter_window.h
+  s_fee2f56d59a3af::t_bb9e421bf094d4 1-33
+windows/runner/main.cpp
+  s_fee2f56d59a3af::t_f81d91b79a0f2d 1-43
+windows/runner/resource.h
+  s_fee2f56d59a3af::t_c30c3f7684ae90 1-16
+windows/runner/runner.exe.manifest
+  s_fee2f56d59a3af::t_c51a38e60acfd3 1-14
+windows/runner/utils.cpp
+  s_fee2f56d59a3af::t_e4894a4aa1dfde 1-69
+windows/runner/utils.h
+  s_fee2f56d59a3af::t_bc8c07fd91416e 1-19
+windows/runner/win32_window.cpp
+  s_fee2f56d59a3af::t_26df234c76b86a 1-288
+windows/runner/win32_window.h
+  s_fee2f56d59a3af::t_c831d13e12eeb4 1-102
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "a5d5e2c5e0aadc55e83d306a51d9d49d597f1d35",
+  "prompts": {},
+  "sessions": {
+    "s_fee2f56d59a3af": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6227ac4e-e9cb-4ff9-9f44-4ddeb9a2a487",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Ana Arismendy <anaarismendy120805@gmail.com>"
+    }
+  }
+}
