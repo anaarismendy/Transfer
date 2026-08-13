@@ -1,4 +1,4 @@
-import '../../domain/entities/user.dart';
+﻿import 'package:prueba_tecnica/domain/entities/user.dart';
 
 extension UserMapper on User {
   Map<String, Object?> toRow() => {

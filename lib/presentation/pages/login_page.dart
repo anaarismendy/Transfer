@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../core/theme.dart';
-import '../../domain/usecases/seed_default_user.dart';
-import '../blocs/auth_bloc.dart';
-import '../widgets/wordmark.dart';
+import 'package:prueba_tecnica/core/theme.dart';
+import 'package:prueba_tecnica/domain/usecases/seed_default_user.dart';
+import 'package:prueba_tecnica/presentation/blocs/auth_bloc.dart';
+import 'package:prueba_tecnica/presentation/widgets/wordmark.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

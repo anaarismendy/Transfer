@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../core/theme.dart';
-import '../../domain/entities/user.dart';
-import '../blocs/auth_bloc.dart';
-import '../widgets/wordmark.dart';
+import 'package:prueba_tecnica/core/theme.dart';
+import 'package:prueba_tecnica/domain/entities/user.dart';
+import 'package:prueba_tecnica/presentation/blocs/auth_bloc.dart';
+import 'package:prueba_tecnica/presentation/widgets/wordmark.dart';
+import 'transfers_page.dart';
 import 'users_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -59,11 +60,13 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  const _ModuleTile(
+                  _ModuleTile(
                     icon: Icons.swap_horiz,
                     title: 'Transferencias',
                     subtitle: 'Registrar una transferencia y ver su comprobante',
-                    onTap: null,
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const TransfersPage()),
+                    ),
                   ),
                 ],
               ),

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 
-import '../../core/theme.dart';
+import 'package:prueba_tecnica/core/theme.dart';
 
 class Wordmark extends StatelessWidget {
   final bool showTagline;

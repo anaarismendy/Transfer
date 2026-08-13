@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../core/di/injection.dart';
-import '../../core/theme.dart';
-import '../../domain/entities/user.dart';
-import '../blocs/users_bloc.dart';
+import 'package:prueba_tecnica/core/di/injection.dart';
+import 'package:prueba_tecnica/core/theme.dart';
+import 'package:prueba_tecnica/domain/entities/user.dart';
+import 'package:prueba_tecnica/presentation/blocs/users_bloc.dart';
 import 'user_form_page.dart';
 
 class UsersPage extends StatelessWidget {

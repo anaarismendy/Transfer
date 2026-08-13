@@ -1,8 +1,8 @@
-import 'package:injectable/injectable.dart';
+﻿import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../../domain/entities/transfer.dart';
-import '../models/transfer_mapper.dart';
+import 'package:prueba_tecnica/domain/entities/transfer.dart';
+import 'package:prueba_tecnica/data/models/transfer_mapper.dart';
 
 @lazySingleton
 class TransferLocalDataSource {

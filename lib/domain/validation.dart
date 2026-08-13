@@ -1,4 +1,4 @@
-import '../core/errors/failures.dart';
+﻿import 'package:prueba_tecnica/core/errors/failures.dart';
 
 final _emailPattern = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
 

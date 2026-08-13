@@ -1,5 +1,5 @@
-import '../../core/result.dart';
-import '../entities/user.dart';
+﻿import 'package:prueba_tecnica/core/result.dart';
+import 'package:prueba_tecnica/domain/entities/user.dart';
 
 abstract class UserRepository {
   Future<Result<List<User>>> getAll();

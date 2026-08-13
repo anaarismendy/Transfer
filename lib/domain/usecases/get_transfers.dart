@@ -1,8 +1,8 @@
-import 'package:injectable/injectable.dart';
+﻿import 'package:injectable/injectable.dart';
 
-import '../../core/result.dart';
-import '../entities/transfer.dart';
-import '../repositories/transfer_repository.dart';
+import 'package:prueba_tecnica/core/result.dart';
+import 'package:prueba_tecnica/domain/entities/transfer.dart';
+import 'package:prueba_tecnica/domain/repositories/transfer_repository.dart';
 
 @lazySingleton
 class GetTransfers {

@@ -1,7 +1,7 @@
-import 'package:injectable/injectable.dart';
+﻿import 'package:injectable/injectable.dart';
 
-import '../../core/result.dart';
-import '../repositories/auth_repository.dart';
+import 'package:prueba_tecnica/core/result.dart';
+import 'package:prueba_tecnica/domain/repositories/auth_repository.dart';
 
 @lazySingleton
 class Logout {

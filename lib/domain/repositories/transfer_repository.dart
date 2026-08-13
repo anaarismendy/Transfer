@@ -1,5 +1,5 @@
-import '../../core/result.dart';
-import '../entities/transfer.dart';
+﻿import 'package:prueba_tecnica/core/result.dart';
+import 'package:prueba_tecnica/domain/entities/transfer.dart';
 
 abstract class TransferRepository {
   Future<Result<List<Transfer>>> getAll();

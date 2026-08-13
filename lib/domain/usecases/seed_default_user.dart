@@ -1,7 +1,7 @@
 ﻿import 'package:injectable/injectable.dart';
 
-import '../repositories/user_repository.dart';
-import '../services/password_hasher.dart';
+import 'package:prueba_tecnica/domain/repositories/user_repository.dart';
+import 'package:prueba_tecnica/domain/services/password_hasher.dart';
 
 @injectable
 class SeedDefaultUser {

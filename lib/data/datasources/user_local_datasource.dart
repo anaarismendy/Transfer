@@ -1,8 +1,8 @@
-import 'package:injectable/injectable.dart';
+﻿import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../../domain/entities/user.dart';
-import '../models/user_mapper.dart';
+import 'package:prueba_tecnica/domain/entities/user.dart';
+import 'package:prueba_tecnica/data/models/user_mapper.dart';
 
 @lazySingleton
 class UserLocalDataSource {

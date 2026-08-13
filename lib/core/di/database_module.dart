@@ -1,7 +1,7 @@
 ﻿import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../../data/datasources/app_database.dart';
+import 'package:prueba_tecnica/data/datasources/app_database.dart';
 
 @module
 abstract class DatabaseModule {

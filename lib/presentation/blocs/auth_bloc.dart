@@ -1,10 +1,10 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+﻿import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/entities/user.dart';
-import '../../domain/usecases/get_current_user.dart';
-import '../../domain/usecases/login.dart';
-import '../../domain/usecases/logout.dart';
+import 'package:prueba_tecnica/domain/entities/user.dart';
+import 'package:prueba_tecnica/domain/usecases/get_current_user.dart';
+import 'package:prueba_tecnica/domain/usecases/login.dart';
+import 'package:prueba_tecnica/domain/usecases/logout.dart';
 
 sealed class AuthEvent {
   const AuthEvent();

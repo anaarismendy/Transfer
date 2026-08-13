@@ -1,12 +1,12 @@
-import 'package:injectable/injectable.dart';
+﻿import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../core/errors/failures.dart';
-import '../../core/result.dart';
-import '../../domain/entities/user.dart';
-import '../../domain/repositories/user_repository.dart';
-import '../datasources/user_local_datasource.dart';
+import 'package:prueba_tecnica/core/errors/failures.dart';
+import 'package:prueba_tecnica/core/result.dart';
+import 'package:prueba_tecnica/domain/entities/user.dart';
+import 'package:prueba_tecnica/domain/repositories/user_repository.dart';
+import 'package:prueba_tecnica/data/datasources/user_local_datasource.dart';
 
 @LazySingleton(as: UserRepository)
 class UserRepositoryImpl implements UserRepository {

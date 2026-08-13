@@ -1,7 +1,7 @@
 ﻿import 'package:bcrypt/bcrypt.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/services/password_hasher.dart';
+import 'package:prueba_tecnica/domain/services/password_hasher.dart';
 
 @LazySingleton(as: PasswordHasher)
 class BcryptPasswordHasher implements PasswordHasher {

@@ -1,12 +1,12 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+﻿import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../core/result.dart';
-import '../../domain/entities/user.dart';
-import '../../domain/usecases/create_user.dart';
-import '../../domain/usecases/delete_user.dart';
-import '../../domain/usecases/get_users.dart';
-import '../../domain/usecases/update_user.dart';
+import 'package:prueba_tecnica/core/result.dart';
+import 'package:prueba_tecnica/domain/entities/user.dart';
+import 'package:prueba_tecnica/domain/usecases/create_user.dart';
+import 'package:prueba_tecnica/domain/usecases/delete_user.dart';
+import 'package:prueba_tecnica/domain/usecases/get_users.dart';
+import 'package:prueba_tecnica/domain/usecases/update_user.dart';
 
 sealed class UsersEvent {
   const UsersEvent();

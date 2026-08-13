@@ -1,11 +1,11 @@
-import 'package:injectable/injectable.dart';
+﻿import 'package:injectable/injectable.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../core/errors/failures.dart';
-import '../../core/result.dart';
-import '../../domain/entities/transfer.dart';
-import '../../domain/repositories/transfer_repository.dart';
-import '../datasources/transfer_local_datasource.dart';
+import 'package:prueba_tecnica/core/errors/failures.dart';
+import 'package:prueba_tecnica/core/result.dart';
+import 'package:prueba_tecnica/domain/entities/transfer.dart';
+import 'package:prueba_tecnica/domain/repositories/transfer_repository.dart';
+import 'package:prueba_tecnica/data/datasources/transfer_local_datasource.dart';
 
 @LazySingleton(as: TransferRepository)
 class TransferRepositoryImpl implements TransferRepository {

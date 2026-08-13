@@ -1,19 +1,15 @@
-﻿class Transfer {
-  final String id;
-  final String sourceUserId;
-  final String destinationUserId;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  final int amountInCents;
+part 'transfer.freezed.dart';
 
-  final String? description;
-  final DateTime createdAt;
-
-  const Transfer({
-    required this.id,
-    required this.sourceUserId,
-    required this.destinationUserId,
-    required this.amountInCents,
-    required this.createdAt,
-    this.description,
-  });
+@freezed
+abstract class Transfer with _$Transfer {
+  const factory Transfer({
+    required String id,
+    required String sourceUserId,
+    required String destinationUserId,
+    required int amountInCents,
+    required DateTime createdAt,
+    String? description,
+  }) = _Transfer;
 }

@@ -1,9 +1,9 @@
-import 'package:injectable/injectable.dart';
+﻿import 'package:injectable/injectable.dart';
 
-import '../../core/errors/failures.dart';
-import '../../core/result.dart';
-import '../repositories/auth_repository.dart';
-import '../repositories/user_repository.dart';
+import 'package:prueba_tecnica/core/errors/failures.dart';
+import 'package:prueba_tecnica/core/result.dart';
+import 'package:prueba_tecnica/domain/repositories/auth_repository.dart';
+import 'package:prueba_tecnica/domain/repositories/user_repository.dart';
 
 @lazySingleton
 class DeleteUser {

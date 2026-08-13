@@ -44,6 +44,7 @@ import 'package:prueba_tecnica/domain/usecases/logout.dart' as _i557;
 import 'package:prueba_tecnica/domain/usecases/seed_default_user.dart' as _i655;
 import 'package:prueba_tecnica/domain/usecases/update_user.dart' as _i1025;
 import 'package:prueba_tecnica/presentation/blocs/auth_bloc.dart' as _i546;
+import 'package:prueba_tecnica/presentation/blocs/transfers_bloc.dart' as _i126;
 import 'package:prueba_tecnica/presentation/blocs/users_bloc.dart' as _i157;
 import 'package:sqflite/sqflite.dart' as _i779;
 
@@ -143,6 +144,13 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i562.CreateUser>(),
         gh<_i1025.UpdateUser>(),
         gh<_i506.DeleteUser>(),
+      ),
+    );
+    gh.factory<_i126.TransfersBloc>(
+      () => _i126.TransfersBloc(
+        gh<_i31.GetUsers>(),
+        gh<_i228.GetTransfers>(),
+        gh<_i869.CreateTransfer>(),
       ),
     );
     return this;

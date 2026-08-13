@@ -1,4 +1,4 @@
-import '../../domain/entities/transfer.dart';
+﻿import 'package:prueba_tecnica/domain/entities/transfer.dart';
 
 extension TransferMapper on Transfer {
   Map<String, Object?> toRow() => {

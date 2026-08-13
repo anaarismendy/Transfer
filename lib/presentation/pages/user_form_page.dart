@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../core/theme.dart';
-import '../../domain/entities/user.dart';
-import '../../domain/validation.dart';
-import '../blocs/users_bloc.dart';
+import 'package:prueba_tecnica/core/theme.dart';
+import 'package:prueba_tecnica/domain/entities/user.dart';
+import 'package:prueba_tecnica/domain/validation.dart';
+import 'package:prueba_tecnica/presentation/blocs/users_bloc.dart';
 
 class UserFormPage extends StatefulWidget {
   final User? user;

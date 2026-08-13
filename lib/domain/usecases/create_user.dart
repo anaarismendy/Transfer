@@ -1,10 +1,10 @@
-import 'package:injectable/injectable.dart';
+﻿import 'package:injectable/injectable.dart';
 
-import '../../core/result.dart';
-import '../entities/user.dart';
-import '../repositories/user_repository.dart';
-import '../services/password_hasher.dart';
-import '../validation.dart';
+import 'package:prueba_tecnica/core/result.dart';
+import 'package:prueba_tecnica/domain/entities/user.dart';
+import 'package:prueba_tecnica/domain/repositories/user_repository.dart';
+import 'package:prueba_tecnica/domain/services/password_hasher.dart';
+import 'package:prueba_tecnica/domain/validation.dart';
 
 @lazySingleton
 class CreateUser {

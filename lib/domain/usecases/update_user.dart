@@ -1,11 +1,11 @@
-import 'package:injectable/injectable.dart';
+﻿import 'package:injectable/injectable.dart';
 
-import '../../core/errors/failures.dart';
-import '../../core/result.dart';
-import '../entities/user.dart';
-import '../repositories/user_repository.dart';
-import '../services/password_hasher.dart';
-import '../validation.dart';
+import 'package:prueba_tecnica/core/errors/failures.dart';
+import 'package:prueba_tecnica/core/result.dart';
+import 'package:prueba_tecnica/domain/entities/user.dart';
+import 'package:prueba_tecnica/domain/repositories/user_repository.dart';
+import 'package:prueba_tecnica/domain/services/password_hasher.dart';
+import 'package:prueba_tecnica/domain/validation.dart';
 
 @lazySingleton
 class UpdateUser {
@@ -28,12 +28,16 @@ class UpdateUser {
         return Err(failure);
       case Ok(:final value):
         if (value == null) return const Err(NotFoundFailure('El usuario no existe'));
+
+        final actualizado = value.copyWith(
+          name: name.trim(),
+          email: email.trim().toLowerCase(),
+        );
+
         return _users.update(
-          value.copyWith(
-            name: name.trim(),
-            email: email.trim().toLowerCase(),
-            passwordHash: newPassword == null ? null : _hasher.hash(newPassword),
-          ),
+          newPassword == null
+              ? actualizado
+              : actualizado.copyWith(passwordHash: _hasher.hash(newPassword)),
         );
     }
   }

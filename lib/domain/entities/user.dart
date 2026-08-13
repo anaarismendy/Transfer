@@ -1,20 +1,13 @@
-class User {
-  final String id;
-  final String name;
-  final String email;
-  final String passwordHash;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const User({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.passwordHash,
-  });
+part 'user.freezed.dart';
 
-  User copyWith({String? name, String? email, String? passwordHash}) => User(
-        id: id,
-        name: name ?? this.name,
-        email: email ?? this.email,
-        passwordHash: passwordHash ?? this.passwordHash,
-      );
+@freezed
+abstract class User with _$User {
+  const factory User({
+    required String id,
+    required String name,
+    required String email,
+    required String passwordHash,
+  }) = _User;
 }
