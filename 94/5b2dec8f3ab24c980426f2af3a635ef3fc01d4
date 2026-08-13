@@ -1,0 +1,19 @@
+README.md
+  s_30f2dcc9f590be::t_e12bed369e9538 1,3-154
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "945b2dec8f3ab24c980426f2af3a635ef3fc01d4",
+  "prompts": {},
+  "sessions": {
+    "s_30f2dcc9f590be": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e1b760ce-d719-4c2a-be60-b7963130558f",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Ana Arismendy <anaarismendy120805@gmail.com>"
+    }
+  }
+}
