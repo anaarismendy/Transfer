@@ -1,0 +1,19 @@
+.github/workflows/ci.yml
+  s_30f2dcc9f590be::t_f3744e2f656552 15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "c5d4a1ddab3096c16b56a047d5fbda914a33fc27",
+  "prompts": {},
+  "sessions": {
+    "s_30f2dcc9f590be": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e1b760ce-d719-4c2a-be60-b7963130558f",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Ana Arismendy <anaarismendy120805@gmail.com>"
+    }
+  }
+}
