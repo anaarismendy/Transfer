@@ -1,0 +1,302 @@
+lib/presentation/pages/home_page.dart
+  s_30f2dcc9f590be::t_078c190dab8c89 526-543
+  s_30f2dcc9f590be::t_c1be9ea3e3e943 119-121,130
+  s_30f2dcc9f590be::t_0626a80df8017c 1,4-5,9-15,17,22-28,31-33,35-37,39-60,62-70,72-73,80-92,95-104,107-113,116-118,123-125,128-129,131-142,144-145,149-171,173-180,182-193,195-200,206-246,248-256,258-259,261-273,275-279,281-302,304-351,353-360,362-383,385-417,419-430,432-435,437-460,462-480,483-503,507-509,511-525
+  s_30f2dcc9f590be::t_534822191a5ffe 201-202
+  s_30f2dcc9f590be::t_d7fe148079d998 203-205
+  s_30f2dcc9f590be::t_9c108ddeec9e9f 247
+  s_30f2dcc9f590be::t_d042fbe6148d64 481-482
+  s_30f2dcc9f590be::t_f41d8b223aaafd 257
+  s_30f2dcc9f590be::t_5d4554bab2ff07 34
+  s_30f2dcc9f590be::t_d2f3bb11b1545b 38
+  s_30f2dcc9f590be::t_43736deda9e6f8 126
+  s_30f2dcc9f590be::t_6dee847b3dd994 172
+  s_30f2dcc9f590be::t_0c612a811c873e 181
+  s_30f2dcc9f590be::t_b914c10adb2692 194
+  s_30f2dcc9f590be::t_fccefb46187527 260
+  s_30f2dcc9f590be::t_298f5198ea77da 274
+  s_30f2dcc9f590be::t_ec41af0d8914c9 280
+  s_30f2dcc9f590be::t_d1129674341d8d 303
+  s_30f2dcc9f590be::t_2164ca68926ffc 352
+  s_30f2dcc9f590be::t_74ddeca0b50431 361
+  s_30f2dcc9f590be::t_29c95f20a0a036 384
+  s_30f2dcc9f590be::t_eedae01965434f 418
+  s_30f2dcc9f590be::t_c8b7f066681dab 431
+  s_30f2dcc9f590be::t_d756029c9aad3c 436
+  s_30f2dcc9f590be::t_55342c959d7f84 461
+  s_30f2dcc9f590be::t_d81ada8caa25ce 510
+lib/presentation/widgets/wordmark.dart
+  s_30f2dcc9f590be::t_0b7e85818aad01 1,3,5-6,8,10,14-19
+  s_30f2dcc9f590be::t_ce8f15e8d019ed 20-22
+  s_30f2dcc9f590be::t_5a76981198a547 23
+lib/presentation/blocs/transfers_bloc.dart
+  s_30f2dcc9f590be::t_aa11e381f3edb7 83-85
+  s_30f2dcc9f590be::t_ea6ac23cf90708 88-90
+  s_30f2dcc9f590be::t_efdd066ddee842 1,76,100-103
+lib/presentation/pages/users_page.dart
+  s_30f2dcc9f590be::t_918c554d7889bf 1,8-9,11-12,20,25,28-30,32-34,38-57,63-72,74-84,86-126,128-129,132-143,147-188,193-201,203-220,225-241,243-249,259-261
+  s_30f2dcc9f590be::t_5d5da0561eca1f 250-252,256-258
+  s_30f2dcc9f590be::t_3a635aaa6c3466 262-264
+  s_30f2dcc9f590be::t_09f171928ce655 253-255,265,267-275
+lib/presentation/pages/user_form_page.dart
+  s_30f2dcc9f590be::t_4d38c2691f1cad 94-96
+  s_30f2dcc9f590be::t_4e870e1c81d482 124-136,138-164,225,229,240,244
+  s_30f2dcc9f590be::t_748fb60d340c17 26
+  s_30f2dcc9f590be::t_578810a8028728 50-54,60-73,77,82
+  s_30f2dcc9f590be::t_28d05edfbe4cc4 90,92-93
+  s_30f2dcc9f590be::t_4f0dddc661e54f 1,8,24,28,45-47,55,57-59,74-75,97-110,113-120,137,165-167,175-224,230-231,233,235-237,239,245-249
+  s_30f2dcc9f590be::t_27091ff4302971 27
+  s_30f2dcc9f590be::t_8859dc808a34cb 48
+  s_30f2dcc9f590be::t_429d38bc121526 76
+  s_30f2dcc9f590be::t_34a25c16d76aa6 78-81
+  s_30f2dcc9f590be::t_19d32bc327aabb 83-84
+  s_30f2dcc9f590be::t_84e5ea28508a30 123
+  s_30f2dcc9f590be::t_7daae58714c0d9 226-228
+  s_30f2dcc9f590be::t_e2703f8f5f1887 232
+  s_30f2dcc9f590be::t_2fa39e581fa8da 234
+  s_30f2dcc9f590be::t_50c32d8260a718 238
+  s_30f2dcc9f590be::t_a375f57585b644 241-243
+  s_30f2dcc9f590be::t_061de97f947f0e 250-252
+  s_30f2dcc9f590be::t_64c89d16c0deae 253-270
+lib/data/datasources/app_database.dart
+  s_30f2dcc9f590be::t_b94c7024501205 36
+  s_30f2dcc9f590be::t_c4958536486bce 10
+  s_30f2dcc9f590be::t_4f3ab2ee896bdf 23
+  s_30f2dcc9f590be::t_7298c969217eec 79-89,91-95,97
+  s_30f2dcc9f590be::t_7f816c82464fbb 6-7
+  s_30f2dcc9f590be::t_a923594ebd8100 47-52
+  s_30f2dcc9f590be::t_28f97172a8b4ee 96,99-114
+  s_30f2dcc9f590be::t_3c54e7e3cc08da 76-78
+  s_30f2dcc9f590be::t_93bac2c7705616 90
+  s_30f2dcc9f590be::t_44233d36974d83 41-42,75
+lib/domain/usecases/create_user.dart
+  s_30f2dcc9f590be::t_3f911c163cf827 5
+  s_30f2dcc9f590be::t_feaeb114c006c3 32
+  s_30f2dcc9f590be::t_c0ae1b038dc94c 1,21-25
+lib/presentation/pages/transfer_form_page.dart
+  s_30f2dcc9f590be::t_7ebb54342eaa0c 152-153,160-167
+  s_30f2dcc9f590be::t_8b22217cea8e04 1,4,9-16,19-20,22,29-43,47,51-82,84-87,89-95,101-151,154-159,168-175,177-179,182-277,279,281-288,291-297,303,307-374,377-400,403-540,543
+  s_30f2dcc9f590be::t_71e7b9409a0b6e 541-542
+  s_30f2dcc9f590be::t_f4f8696f61cbf0 544-546
+  s_30f2dcc9f590be::t_983c25238fb317 547-582,586-602
+README.md
+  s_30f2dcc9f590be::t_153bf8bce2988c 49-50
+  s_30f2dcc9f590be::t_d97e9f38076a32 203,207-213
+  s_30f2dcc9f590be::t_f79672fd71d13e 75-92,94,143
+  s_30f2dcc9f590be::t_a387f4cfc3afec 161-162
+  s_30f2dcc9f590be::t_54be17da7fe763 67-69
+  s_30f2dcc9f590be::t_884ba044b7663b 201
+  s_30f2dcc9f590be::t_8c9d6d91de79b5 235-236
+  s_30f2dcc9f590be::t_b5edccc34ec6d0 93,95-142
+  s_30f2dcc9f590be::t_a4fef8d1cbd17b 232-234
+test/bootstrap_test.dart
+  s_30f2dcc9f590be::t_18e09af8fed70b 7
+  s_30f2dcc9f590be::t_24a5cee277ac44 123-125
+  s_30f2dcc9f590be::t_87156259cc7a99 66-122,126-144
+  s_30f2dcc9f590be::t_5588b015af5216 39-42,44-45,47-54
+test/users_flow_test.dart
+  s_30f2dcc9f590be::t_2426e0dfed44ec 1,49-60,64,68-70,73-76,80-82,98-119,123,128,131-132,136-140,144-146,148,150-151,154-164,167,169,171-172,175-192,198,201,203-209,215-217,220-222,224-225,232-234,238-240
+  s_30f2dcc9f590be::t_64de56b0cd3e43 245,248-262
+lib/data/models/user_mapper.dart
+  s_30f2dcc9f590be::t_0fd0c65b55465d 1,5-10,18,20-24,28-34
+lib/data/datasources/transfer_local_datasource.dart
+  s_30f2dcc9f590be::t_74e1266317ab3a 1,5,15-18,22-36
+  s_30f2dcc9f590be::t_aa804239387c07 37
+test/usecases_test.dart
+  s_30f2dcc9f590be::t_d91ca591b68bcd 83,93,103,115,126,241,246,258,298,321,325-326,329-349,351-352,361,371,386,401
+  s_30f2dcc9f590be::t_411e7bf5ededdb 13
+  s_30f2dcc9f590be::t_e3e5b8e325bed1 80-82
+  s_30f2dcc9f590be::t_1995d5bd93d1d4 90-92
+  s_30f2dcc9f590be::t_7665d1f8516564 100-102
+  s_30f2dcc9f590be::t_990c91f68bd041 112-114
+  s_30f2dcc9f590be::t_5e820a0d563499 123-125
+  s_30f2dcc9f590be::t_e2c33c3b594e71 238-240
+  s_30f2dcc9f590be::t_2a714b1e4b2239 243-245
+  s_30f2dcc9f590be::t_e888b61a2f43af 255-257
+  s_30f2dcc9f590be::t_aa4585b7e90eba 295-297
+  s_30f2dcc9f590be::t_0847c002a58d3a 350
+  s_30f2dcc9f590be::t_fe36e11d9fe0df 353-355,358-360
+  s_30f2dcc9f590be::t_d81c6041c4a861 368-370
+  s_30f2dcc9f590be::t_1454a1b7d9842a 383-385
+  s_30f2dcc9f590be::t_2fb42dac32a9c7 398-400
+  s_30f2dcc9f590be::t_18e5b464a2ed35 42-43,66-67,79,89,99,111,122,134-137,139,141-144,203-214,218-221,223-225,227-231,236-237,253-254,356-357,365-367,380-382,395-397
+lib/domain/usecases/seed_default_user.dart
+  s_30f2dcc9f590be::t_d8007d53126125 3
+  s_30f2dcc9f590be::t_2ad15cbf9860cc 25
+test/shell_test.dart
+  s_30f2dcc9f590be::t_4bcd66c67ac8e4 1-148
+  s_30f2dcc9f590be::t_3543f227b03b1f 149-151
+  s_30f2dcc9f590be::t_200d2576c89f72 152-158
+lib/main.dart
+  s_30f2dcc9f590be::t_ee89440d53f738 43-44
+  s_30f2dcc9f590be::t_30eef62f4f08fc 45
+lib/core/format.dart
+  s_30f2dcc9f590be::t_9a22a645cc09cc 27-40
+  s_30f2dcc9f590be::t_d1b49740fd6396 13-18,21
+  s_30f2dcc9f590be::t_7fddcb306c7308 3,9-12,19,45-70
+lib/domain/usecases/create_transfer.dart
+  s_30f2dcc9f590be::t_8140a9681f2719 22-24
+  s_30f2dcc9f590be::t_403580aab3d435 37-40
+  s_30f2dcc9f590be::t_1641429d8ef97b 34-36
+  s_30f2dcc9f590be::t_f9d876cfe9cff0 1,33
+lib/domain/opening_balance.dart
+  s_30f2dcc9f590be::t_e98bacd0dfac85 1-7
+lib/core/errors/failures.dart
+  s_30f2dcc9f590be::t_a9f81938d99e4a 17,23,33,36-39,45
+  s_30f2dcc9f590be::t_3c4ce1c3dd685a 15-16
+  s_30f2dcc9f590be::t_2a1b8b535ab068 21-22
+  s_30f2dcc9f590be::t_270785e72d5faa 31-32
+  s_30f2dcc9f590be::t_a49542c70de8bb 34-35
+  s_30f2dcc9f590be::t_12cfe2b7b26826 43-44
+  s_30f2dcc9f590be::t_cf69cae4c0d742 1,50-51
+lib/data/repositories/user_repository_impl.dart
+  s_30f2dcc9f590be::t_f4cae7aba722e6 91-96
+  s_30f2dcc9f590be::t_ef017069089468 48,55
+lib/core/theme.dart
+  s_30f2dcc9f590be::t_5fd3e7d1aefb7b 3-7,9-11,13-22,24-27,30-48,50-61,66-70,73-75
+  s_30f2dcc9f590be::t_b415e477fbf78d 76-77
+  s_30f2dcc9f590be::t_2dec6445b746da 79
+lib/presentation/widgets/soft.dart
+  s_30f2dcc9f590be::t_43ac16c70599a0 1-393
+  s_30f2dcc9f590be::t_71604e293000e6 394-396
+  s_30f2dcc9f590be::t_f5662ec6ea4ae3 397-452
+test/transfers_flow_test.dart
+  s_30f2dcc9f590be::t_9216eb79a70382 163
+  s_30f2dcc9f590be::t_547c6447fbb6c8 145-152,154
+  s_30f2dcc9f590be::t_abac7b353a2336 33-36
+  s_30f2dcc9f590be::t_c0b0b2df95043c 310-315,318-321,329,331-335,337-339,341,343-344,346,348-352,354,357-358
+  s_30f2dcc9f590be::t_8aa0ae2d230147 1,5,51-69,71-73,75-77,79-80,87-88,107-110,113-116,119-122,125-128,132-134,140-144,153,155,157-162,164,169-176,178,180,183-190,192-196,198-205,207-208,210-212,214,217,219,221,223,225-231,233-240,242-251,253-255,257,259-263,266-267,272,274-276,278,284,286,288-293,298,300,302-304,306-307,361,363,365-377,379-381,383-385
+  s_30f2dcc9f590be::t_dc37b735ad3615 19
+  s_30f2dcc9f590be::t_1032f5645471ca 70
+  s_30f2dcc9f590be::t_0b7a7cf4cfa627 74
+  s_30f2dcc9f590be::t_fda7142c8b22bd 78
+  s_30f2dcc9f590be::t_5611f206b93f5e 111-112
+  s_30f2dcc9f590be::t_f1ad95b7525e2a 156
+  s_30f2dcc9f590be::t_7d0361df3c6157 191
+  s_30f2dcc9f590be::t_3ad1525165bb43 197
+  s_30f2dcc9f590be::t_04748c56129c60 206
+  s_30f2dcc9f590be::t_2dc431e2449fac 232
+  s_30f2dcc9f590be::t_40bf50dc4ba482 252
+  s_30f2dcc9f590be::t_240597828f1509 277
+  s_30f2dcc9f590be::t_09345e71356a2a 285
+  s_30f2dcc9f590be::t_a683b87d38140c 294-297
+  s_30f2dcc9f590be::t_470c3f5440bec2 299
+  s_30f2dcc9f590be::t_b5a15e6890ca78 305
+  s_30f2dcc9f590be::t_94ffab45eef1c6 308
+  s_30f2dcc9f590be::t_0a1c9f006facf6 316-317
+  s_30f2dcc9f590be::t_19b0a469d09e87 336
+  s_30f2dcc9f590be::t_35477d72555659 340
+  s_30f2dcc9f590be::t_c972e2b66f03df 345
+  s_30f2dcc9f590be::t_6abd0610f71c53 347
+  s_30f2dcc9f590be::t_d47633706d9b9f 362
+  s_30f2dcc9f590be::t_6352712bc67be1 13,323-327
+lib/domain/repositories/user_repository.dart
+  s_30f2dcc9f590be::t_3cc4708811d919 13
+lib/data/datasources/user_local_datasource.dart
+  s_30f2dcc9f590be::t_1391ed191d1250 41-49
+  s_30f2dcc9f590be::t_bc693becd4667f 1,20-25,51-52,55-58
+test/database_test.dart
+  s_30f2dcc9f590be::t_ce63b89299bfc0 236,294-310
+  s_30f2dcc9f590be::t_e52569edece75c 97,127,129,132,136,169-170,172-174,205-207,209-212,214,232,235,249-253,255-284,286-293,311-324,330,333,335,341,346,349,351,361
+  s_30f2dcc9f590be::t_ad2ba0bae49581 40,66,68,80,139,141-142,156,237-244,246
+  s_30f2dcc9f590be::t_4a76b95cc1ec97 37-39
+  s_30f2dcc9f590be::t_ecdab794056841 67
+  s_30f2dcc9f590be::t_1efda926d73ff8 69
+  s_30f2dcc9f590be::t_9a98c0b0064b8d 78-79
+  s_30f2dcc9f590be::t_62fd4da978a890 94-96
+  s_30f2dcc9f590be::t_1bca2be4ce5a12 126
+  s_30f2dcc9f590be::t_ae70e7f36a734f 128
+  s_30f2dcc9f590be::t_e2a59f75449026 133-135
+  s_30f2dcc9f590be::t_a60fbcffec62f5 140
+  s_30f2dcc9f590be::t_6e348c85bb63a0 143
+  s_30f2dcc9f590be::t_fcf0e01e4334cf 154-155
+  s_30f2dcc9f590be::t_aa6061cab306ac 171
+  s_30f2dcc9f590be::t_c7fa69f956a31b 208
+  s_30f2dcc9f590be::t_6c22ad7f46cfc8 213
+  s_30f2dcc9f590be::t_3607ab03d0eac5 233-234
+  s_30f2dcc9f590be::t_400a1cd8425b2e 245
+  s_30f2dcc9f590be::t_ab9ab42e226507 247-248
+  s_30f2dcc9f590be::t_66e9edea281ddb 254
+  s_30f2dcc9f590be::t_5b6488df867aea 285
+  s_30f2dcc9f590be::t_9ed2ca912d5793 331-332
+  s_30f2dcc9f590be::t_ed7d6adba2b61b 334
+  s_30f2dcc9f590be::t_de315992361f7f 339-340
+  s_30f2dcc9f590be::t_f8adb3a6cbcfaa 347-348
+  s_30f2dcc9f590be::t_43d4cbe687257f 350
+  s_30f2dcc9f590be::t_22ad3f070a5b85 359-360
+  s_30f2dcc9f590be::t_fdcb628686924d 12,35-36,60,71-76,91-93,145-150,152
+test/login_flow_test.dart
+  s_30f2dcc9f590be::t_211bbcb8fd8213 21-23,49-55,57-61,66-69,73-75,81-89,95-99,102,106-109,111-112,114-117,119-121,124-125,127-132,142,145-147,150,152,157-159,162,167-171,174,180-182,184-187
+  s_30f2dcc9f590be::t_33bcc08f69049c 188
+  s_30f2dcc9f590be::t_e714b4a124f8c7 194
+lib/presentation/widgets/movement_row.dart
+  s_30f2dcc9f590be::t_1c5c72cf86e905 1-76
+  s_30f2dcc9f590be::t_1a140e63a951c3 77-79
+  s_30f2dcc9f590be::t_6fac0fdc7f4e94 80
+lib/domain/entities/user.dart
+  s_30f2dcc9f590be::t_5bd6a104368299 12
+lib/presentation/pages/transfers_page.dart
+  s_30f2dcc9f590be::t_1c7a73a6cf5a2e 105-116
+  s_30f2dcc9f590be::t_0649fee789e105 1,6-7,9-11,13-16,18-20,26-52,57-67,71-78,80-96,102-104,117-137,139-140,143-149,153-157,159-162,166-173,178-182
+  s_30f2dcc9f590be::t_31b1aa108186a1 174-177
+  s_30f2dcc9f590be::t_b9b958de164f72 183-185
+  s_30f2dcc9f590be::t_fb87b05c08a867 186-193
+lib/data/repositories/transfer_repository_impl.dart
+  s_30f2dcc9f590be::t_14836d409a0b1d 2
+  s_30f2dcc9f590be::t_65219a8fe8e08e 43,45-50
+lib/presentation/pages/receipt_page.dart
+  s_30f2dcc9f590be::t_e8dc4c3a985825 1,6,10-12,17-19,25-45,47-50,52,55-60,63-88,95-118,120-144,146-148,151-159
+  s_30f2dcc9f590be::t_1228f74789a2cd 160-162
+  s_30f2dcc9f590be::t_656e8ab65ac770 163-166,170-171
+lib/domain/usecases/update_user.dart
+  s_30f2dcc9f590be::t_18b2fee5f47084 34-36
+  s_30f2dcc9f590be::t_4064a3b5a54ed4 1,22-26
+lib/presentation/pages/login_page.dart
+  s_30f2dcc9f590be::t_4f5e12e8fe25b6 1,6,8,20-22,26-27,31-33,36,42,46,48-50,53-54,65-68,70-71,75-102,104-124,126-139,145-168,170-177,180-181,185-188,191,197
+  s_30f2dcc9f590be::t_842bfd1dcce37f 189-190
+  s_30f2dcc9f590be::t_af38bede5329b9 194-196
+  s_30f2dcc9f590be::t_0c2ff77110704d 198-200
+  s_30f2dcc9f590be::t_9af54eb945c845 193,201-202,206-235
+lib/data/datasources/session_local_datasource.dart
+  s_fee2f56d59a3af::t_6526f8a613a1b7 12-15,27-28
+lib/data/models/transfer_mapper.dart
+  s_fee2f56d59a3af::t_fff8c3e8891920 1,5-11
+test/data_layer_test.dart
+  s_fee2f56d59a3af::t_86db61a7832606 27-32,34-37
+lib/core/result.dart
+  s_30f2dcc9f590be::t_294d44a391a08f 1,6-12
+lib/domain/entities/user.freezed.dart
+  s_30f2dcc9f590be::t_0b7101eb305aec 18,29,34,38,49,66,72-73,158,161,179,182,199,202,214,221,233,238,242,253,270,276-277
+lib/domain/usecases/delete_user.dart
+  s_30f2dcc9f590be::t_a3afcfe31d6209 1,22-24
+lib/domain/validation.dart
+  s_30f2dcc9f590be::t_ff6836fab42ec8 1,7-9,15-19
+lib/presentation/blocs/auth_bloc.dart
+  s_30f2dcc9f590be::t_709182d824c2cf 1,59-60,66-69,71-76,79-82,85-90,93-96
+lib/presentation/blocs/users_bloc.dart
+  s_30f2dcc9f590be::t_f7f5a37a8b64d8 1,68-73,83-87,91-94,112-116
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "e1c6c644d3beb12734e05238c4ba78d9da89d68d",
+  "prompts": {},
+  "sessions": {
+    "s_30f2dcc9f590be": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e1b760ce-d719-4c2a-be60-b7963130558f",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Ana Arismendy <anaarismendy120805@gmail.com>"
+    },
+    "s_fee2f56d59a3af": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6227ac4e-e9cb-4ff9-9f44-4ddeb9a2a487",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Ana Arismendy <anaarismendy120805@gmail.com>"
+    }
+  }
+}
