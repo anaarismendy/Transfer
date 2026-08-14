@@ -1,0 +1,80 @@
+test/data/models/transfer_mapper_test.dart
+  s_30f2dcc9f590be::t_0df5f9144d63af 1-39
+test/data/repositories/user_repository_impl_test.dart
+  s_30f2dcc9f590be::t_3819fdfcb2b762 1-116
+  s_30f2dcc9f590be::t_59fda0ce4da793 117-119
+test/presentation/pages/transfer_form_page_test.dart
+  s_30f2dcc9f590be::t_8451ace1bdbae9 1-129
+  s_30f2dcc9f590be::t_0157fdf979b355 130-132
+  s_30f2dcc9f590be::t_45aa3452085888 133-138
+test/domain/usecases/login_test.dart
+  s_30f2dcc9f590be::t_d94fb62665a23e 1-59
+  s_30f2dcc9f590be::t_8ecf23d6be0614 60-62
+test/domain/usecases/delete_user_test.dart
+  s_30f2dcc9f590be::t_18bebacb2fb810 1-40
+test/presentation/pages/users_page_test.dart
+  s_30f2dcc9f590be::t_529fc63f973c11 8-9,12-13,16-19,22-31,35,42,47-48,84-88,107,161,163,191-195,201
+  s_30f2dcc9f590be::t_806cadd72b8c73 202-204
+  s_30f2dcc9f590be::t_68a5a2def82fb4 205,217-221
+test/core/format_test.dart
+  s_30f2dcc9f590be::t_c58c1142693800 1-66
+test/presentation/pages/transfers_page_test.dart
+  s_30f2dcc9f590be::t_74941b55beefd5 1-77
+  s_30f2dcc9f590be::t_b9acc835270469 78-79
+test/data/services/bcrypt_password_hasher_test.dart
+  s_30f2dcc9f590be::t_4de26401fd8317 1-21
+test/data/repositories/transfer_repository_impl_test.dart
+  s_30f2dcc9f590be::t_77aa24914f09a9 1-126
+test/support/harness.dart
+  s_30f2dcc9f590be::t_e1d53558a7acee 100-105
+  s_30f2dcc9f590be::t_1433ea34b44eb6 1-99,106-126
+test/presentation/pages/login_page_test.dart
+  s_30f2dcc9f590be::t_a2054834d6baeb 7-8,11-12,15-18,21-29,52,64,80,94,124,126
+  s_30f2dcc9f590be::t_9f109081ed9ed5 127
+  s_30f2dcc9f590be::t_4c521f6ea562b7 141,143-144
+test/domain/usecases/seed_default_user_test.dart
+  s_30f2dcc9f590be::t_9e58cea31a66f4 1-9,11-24,26-34
+  s_30f2dcc9f590be::t_0e2593650ceaf1 10
+  s_30f2dcc9f590be::t_3501c1d4a91cea 25
+README.md
+  s_30f2dcc9f590be::t_9cdc81e185012b 201-223
+test/data/models/user_mapper_test.dart
+  s_30f2dcc9f590be::t_86e24169d59224 1-39
+test/data/datasources/app_database_test.dart
+  s_30f2dcc9f590be::t_cc516c4e7623a1 1-125
+test/data/repositories/auth_repository_impl_test.dart
+  s_30f2dcc9f590be::t_d7d8b18bfbda1e 1-28
+  s_30f2dcc9f590be::t_6c68150e375cc6 29
+test/domain/usecases/create_user_test.dart
+  s_30f2dcc9f590be::t_6c8f282b25dbb2 1-66
+test/domain/usecases/get_current_user_test.dart
+  s_30f2dcc9f590be::t_f99a140e037904 1-23
+  s_30f2dcc9f590be::t_8dd8851b25ed7a 24-26
+test/domain/usecases/update_user_test.dart
+  s_30f2dcc9f590be::t_09511b55ab62b0 1-58
+  s_30f2dcc9f590be::t_075a757c1fefb1 59-61
+test/presentation/pages/home_page_test.dart
+  s_30f2dcc9f590be::t_9a65be6e9e06c3 1-45,47,51-57,59-130,132-158
+  s_30f2dcc9f590be::t_b0e945631cb07f 58
+  s_30f2dcc9f590be::t_07bb70d9a9740f 48-50
+test/domain/usecases/logout_test.dart
+  s_30f2dcc9f590be::t_617c71d0791e71 1-15
+test/domain/usecases/create_transfer_test.dart
+  s_30f2dcc9f590be::t_5427c740bc020d 1-115
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "a93014588844b2d5e985188f7af1073bde832751",
+  "prompts": {},
+  "sessions": {
+    "s_30f2dcc9f590be": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e1b760ce-d719-4c2a-be60-b7963130558f",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Ana Arismendy <anaarismendy120805@gmail.com>"
+    }
+  }
+}
