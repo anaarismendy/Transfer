@@ -64,6 +64,10 @@ class TransfersReady extends TransfersState {
   }
 
   String nameOf(String id) => userById(id)?.name ?? 'Usuario eliminado';
+
+  List<Transfer> movementsOf(String userId) => transfers
+      .where((t) => t.sourceUserId == userId || t.destinationUserId == userId)
+      .toList();
 }
 
 @injectable

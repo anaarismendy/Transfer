@@ -99,7 +99,8 @@ class _TransfersViewState extends State<TransfersView> {
 
   Widget _history(TransfersReady ready) {
     final me = widget.currentUser.id;
-    final visible = ready.transfers
+    final visible = ready
+        .movementsOf(me)
         .where(
           (t) => switch (_filter) {
             MovementFilter.all => true,

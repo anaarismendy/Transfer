@@ -62,6 +62,35 @@ void main() {
     expect(find.text(r'-$250.000'), findsOneWidget);
   });
 
+  testWidgets('una transferencia entre terceros no aparece como recibida', (
+    tester,
+  ) async {
+    final carlos = await tester.runAsync(
+      () => h.newUserRaw('Carlos', 'carlos@test.com'),
+    );
+    await openHistory(tester);
+
+    bloc.add(
+      TransferSubmitted(
+        sourceUserId: luis.id,
+        destinationUserId: carlos!.id,
+        amountInCents: 90000 * 100,
+      ),
+    );
+    await waitForState(
+      tester,
+      bloc,
+      (s) => s is TransfersReady && s.transfers.length == 1,
+    );
+
+    expect(
+      find.text(r'+$90.000'),
+      findsNothing,
+      reason: 'Ana no recibio nada: el movimiento es entre otros dos',
+    );
+    expect(find.text('No hay movimientos'), findsOneWidget);
+  });
+
   testWidgets('el filtro de recibidos deja fuera lo que uno envio', (
     tester,
   ) async {

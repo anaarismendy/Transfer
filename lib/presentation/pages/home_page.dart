@@ -370,7 +370,9 @@ class _DashboardViewState extends State<DashboardView> {
   }
 
   Widget _recentMovements(TransfersReady ready) {
-    if (ready.transfers.isEmpty) {
+    final mine = ready.movementsOf(widget.user.id);
+
+    if (mine.isEmpty) {
       return const SoftCard(
         child: Padding(
           padding: EdgeInsets.all(26),
@@ -386,7 +388,7 @@ class _DashboardViewState extends State<DashboardView> {
 
     return SoftList(
       children: [
-        for (final transfer in ready.transfers.take(3))
+        for (final transfer in mine.take(3))
           MovementRow(
             transfer: transfer,
             currentUserId: widget.user.id,
