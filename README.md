@@ -1,5 +1,7 @@
 # TRANSFER — consola de transferencias
 
+[![CI](https://github.com/anaarismendy/prueba-tecnica-flutter/actions/workflows/ci.yml/badge.svg)](https://github.com/anaarismendy/prueba-tecnica-flutter/actions/workflows/ci.yml)
+
 Prueba técnica en Flutter: autenticación, gestión de usuarios y transferencias
 con comprobante, sobre Clean Architecture con BLoC e inyección de dependencias.
 
@@ -26,6 +28,15 @@ También aparecen en la propia pantalla de acceso para no tener que buscarlas.
 Probado en Windows escritorio y Android. En Windows y Linux SQLite entra por
 `sqflite_common_ffi`; en Android, iOS y macOS usa el motor nativo. La selección
 es automática en `AppDatabase.open()`.
+
+## Integración continua
+
+`.github/workflows/ci.yml` corre en cada push a `main` y en cada pull request:
+formato, `flutter analyze` y las 104 pruebas, contra Flutter 3.44.6 en Ubuntu.
+
+Las tres son barreras, no avisos: si alguna falla, el build queda rojo. El
+código generado (`*.freezed.dart`, `*.config.dart`) está versionado, así que CI
+no necesita correr `build_runner`.
 
 ## Requisitos cubiertos
 
