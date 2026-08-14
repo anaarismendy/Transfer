@@ -34,8 +34,6 @@ class CreateTransfer {
               NotFoundFailure('El usuario seleccionado ya no existe'),
             );
           }
-          // El CHECK de la tabla tambien lo impide, pero desde aca el mensaje
-          // dice que fue el saldo y no un error generico de base.
           if (id == sourceUserId && value.balanceInCents < amountInCents) {
             return const Err(InsufficientFundsFailure());
           }

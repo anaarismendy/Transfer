@@ -38,9 +38,6 @@ class UserLocalDataSource {
 
   Future<void> insert(User user) => _db.insert(_table, user.toRow());
 
-  /// El saldo queda fuera a proposito: solo se mueve dentro de la transaccion
-  /// de una transferencia. Si se escribiera aca, editar un nombre pisaria el
-  /// saldo con el que traia la entidad en memoria.
   Future<int> update(User user) => _db.update(
     _table,
     user.toRow()..remove('balance_in_cents'),

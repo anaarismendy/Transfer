@@ -116,8 +116,6 @@ class _DashboardViewState extends State<DashboardView> {
     return BlocBuilder<TransfersBloc, TransfersState>(
       builder: (context, state) {
         final ready = state is TransfersReady ? state : null;
-        // El usuario de la sesion es una foto del momento del login: el saldo
-        // fresco viene de la lista que el bloc recarga tras cada movimiento.
         final me = ready?.userById(widget.user.id) ?? widget.user;
 
         return SafeArea(
@@ -310,8 +308,6 @@ class _DashboardViewState extends State<DashboardView> {
     );
   }
 
-  /// Los mas frecuentes salen de las transferencias que ya existen: no hace
-  /// falta guardar nada nuevo, solo contar con quien mueve plata este usuario.
   Widget _frequentContacts(TransfersReady ready) {
     final counts = <String, int>{};
     for (final t in ready.transfers) {
@@ -478,8 +474,6 @@ class _TabBar extends StatelessWidget {
           ),
         ],
       ),
-      // Las cinco ranuras se reparten el ancho: con textos fijos la barra se
-      // desborda en un telefono angosto.
       child: Row(
         children: [
           _item(Icons.home_outlined, 'Inicio', 0),

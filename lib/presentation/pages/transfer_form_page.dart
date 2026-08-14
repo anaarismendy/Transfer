@@ -310,8 +310,6 @@ class _TransferFormPageState extends State<TransferFormPage> {
     );
   }
 
-  /// El diseno da por hecho que el origen es quien esta en sesion. La prueba
-  /// pide registrar el origen, asi que queda visible y se puede cambiar.
   Widget _sourceRow(TransfersReady ready) {
     return GestureDetector(
       onTap: () => _pickSource(ready),
@@ -584,8 +582,6 @@ class _TransferFormPageState extends State<TransferFormPage> {
     );
   }
 
-  /// El formulario de contactos vive en el modulo de usuarios y necesita su
-  /// bloc; al volver se recarga la lista para que el nuevo contacto aparezca.
   Future<void> _newContact(TransfersReady ready) async {
     final transfers = context.read<TransfersBloc>();
 

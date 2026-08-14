@@ -114,8 +114,6 @@ void main() {
       return (result as Ok<User>).value;
     }
 
-    /// El cuerpo de testWidgets corre con reloj falso, asi que el I/O real de
-    /// SQLite solo completa dentro de runAsync.
     Future<void> seedUsers(WidgetTester tester, {int count = 2}) =>
         tester.runAsync(() async {
           ana = await newUser('Ana', 'ana@test.com');
@@ -142,8 +140,6 @@ void main() {
       child: MaterialApp(theme: buildAppTheme(), home: child),
     );
 
-    /// El lienzo de prueba es 800x600 y el teclado queda fuera de pantalla, asi
-    /// que se usa una ventana con forma de telefono.
     void usePhone(WidgetTester tester) {
       tester.view.physicalSize = const Size(430, 1240);
       tester.view.devicePixelRatio = 1;

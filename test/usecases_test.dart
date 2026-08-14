@@ -22,9 +22,6 @@ import 'package:prueba_tecnica/domain/usecases/logout.dart';
 import 'package:prueba_tecnica/domain/usecases/update_user.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-/// Los casos de uso se prueban contra la base real en memoria en vez de
-/// contra mocks: cubre tambien que las reglas de dominio y las restricciones
-/// del esquema no se contradigan.
 void main() {
   late Database db;
   late AuthRepositoryImpl auth;

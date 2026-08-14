@@ -77,13 +77,6 @@ class AppDatabase {
     );
   }
 
-  /// Se acumula, no se reescribe: cada version agrega su bloque y los viejos
-  /// quedan para quien venga desde mas atras.
-  ///
-  /// ponytail: SQLite no sabe agregar un CHECK con ALTER TABLE, asi que en una
-  /// base que ya existia la columna llega sin `balance_not_negative`. La regla
-  /// igual se valida en el caso de uso. Para igualar los esquemas habria que
-  /// recrear la tabla y copiar, que aca no vale la pena.
   static Future<void> _upgrade(
     Database db,
     int oldVersion,
@@ -97,12 +90,6 @@ class AppDatabase {
     }
   }
 
-  /// Reconstruye los saldos desde el historial que ya estaba guardado: cupo de
-  /// apertura mas lo recibido menos lo enviado. Sin esto, una base vieja
-  /// quedaria con todos en el mismo saldo y contradiciendo sus movimientos.
-  ///
-  /// El MAX(0, ...) es por si alguien alcanzo a enviar mas que el cupo cuando
-  /// nadie validaba fondos.
   static Future<void> recomputeBalances(DatabaseExecutor db) => db.execute('''
       UPDATE users SET balance_in_cents = MAX(0,
         $openingBalanceInCents

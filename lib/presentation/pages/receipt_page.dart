@@ -117,7 +117,6 @@ class ReceiptPage extends StatelessWidget {
     ),
   );
 
-  /// El comprobante que pide la prueba: lo que quedo guardado, tal cual.
   Widget _receipt() => SoftCard(
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
     child: Column(

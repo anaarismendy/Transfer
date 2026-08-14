@@ -16,11 +16,6 @@ import 'package:prueba_tecnica/presentation/blocs/auth_bloc.dart';
 import 'package:prueba_tecnica/presentation/pages/login_page.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-/// Recorre la pantalla real con la base real en memoria: es lo mas cerca de
-/// lo que hara el evaluador cuando abra la app.
-///
-/// Tras entrar no se monta HomePage: el shell resuelve sus blocs con get_it y
-/// aca lo que se prueba es la autenticacion, no las pestanas.
 void main() {
   late Database db;
   late AuthBloc authBloc;
@@ -60,9 +55,6 @@ void main() {
     ),
   );
 
-  /// `pumpAndSettle` no sirve aqui: el indicador de carga anima infinitamente
-  /// y bcrypt corre en tiempo real, que el reloj falso del test no avanza.
-  /// Se espera el estado concreto del bloc y luego se pinta.
   Future<void> waitFor(
     WidgetTester tester,
     bool Function(AuthState) matcher,

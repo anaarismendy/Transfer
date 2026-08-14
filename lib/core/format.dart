@@ -10,8 +10,6 @@ String _group(String digits) {
 }
 
 String formatMoney(int amountInCents) {
-  // El signo se saca antes de agrupar: si no, el '-' cuenta como digito y los
-  // puntos caen corridos ($-.500.000).
   final sign = amountInCents < 0 ? '-' : '';
   final absolute = amountInCents.abs();
   final pesos = absolute ~/ 100;
@@ -24,8 +22,6 @@ String formatMoney(int amountInCents) {
 String formatDateTime(DateTime value) =>
     '${_two(value.day)}/${_two(value.month)}/${value.year}  ${_two(value.hour)}:${_two(value.minute)}';
 
-/// "Hoy, 10:32" / "Ayer, 18:50" / "10/08, 11:05", como en el diseno. El ahora
-/// entra por parametro para que se pueda fijar en las pruebas.
 String formatRelative(DateTime value, {DateTime? now}) {
   final reference = now ?? DateTime.now();
   final today = DateTime(reference.year, reference.month, reference.day);
@@ -43,8 +39,6 @@ int? parsePesosToCents(String input) {
   return pesos == null ? null : pesos * 100;
 }
 
-/// El teclado del diseno acumula lo pulsado en crudo: "150000" o "1500.5".
-/// Aca se muestra agrupado y con coma decimal, como se ve en pantalla.
 String formatKeypadAmount(String raw) {
   if (raw.isEmpty) return '0';
 

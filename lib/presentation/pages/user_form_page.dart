@@ -63,8 +63,6 @@ class _UserFormPageState extends State<UserFormPage> {
     );
   }
 
-  /// Solo se cierra cuando el bloc confirma. Si el correo esta repetido, el
-  /// formulario se queda con lo escrito en vez de perderlo.
   void _onUsersState(BuildContext context, UsersState state) {
     final ready = state as UsersReady;
 

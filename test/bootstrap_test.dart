@@ -8,8 +8,6 @@ import 'package:prueba_tecnica/domain/opening_balance.dart';
 import 'package:prueba_tecnica/domain/usecases/seed_default_user.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-/// Arranque real: base en disco, no en memoria. Verifica que el usuario
-/// semilla queda usable, porque sin el no hay con que iniciar sesion.
 void main() {
   late Database db;
   late UserRepositoryImpl users;
@@ -19,7 +17,6 @@ void main() {
     db = await AppDatabase.open();
     users = UserRepositoryImpl(UserLocalDataSource(db));
     hasher = BcryptPasswordHasher();
-    // Base limpia: el archivo sobrevive entre corridas de test.
     await db.delete('transfers');
     await db.delete('users');
   });
@@ -64,9 +61,6 @@ void main() {
     expect(all.fold((f) => throw StateError(f.message), (u) => u.length), 1);
   });
 
-  /// Una base de la version 1 con datos, abierta por la app de hoy. Es el unico
-  /// camino que corre sobre datos que ya existen: si se rompe, se rompen los
-  /// datos de alguien.
   test('una base vieja con datos sobrevive a la migracion', () async {
     final path = db.path;
     await db.close();
@@ -120,7 +114,6 @@ void main() {
     await old.close();
 
     db = await AppDatabase.open();
-    // El repositorio de setUp apunta a la conexion que se cerro.
     users = UserRepositoryImpl(UserLocalDataSource(db));
 
     final migrated = await users.getAll().then(

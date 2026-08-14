@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:prueba_tecnica/core/theme.dart';
 
-/// Sombra doble: oscura abajo-derecha, clara arriba-izquierda. Es lo que da el
-/// relieve del diseno; Flutter no tiene box-shadow inset, asi que el hundido se
-/// imita con un degradado (ver [softInset]).
 List<BoxShadow> softShadows({double spread = 1}) => [
   BoxShadow(
     color: const Color(0xFFA094C7).withValues(alpha: 0.30),
@@ -47,8 +44,6 @@ BoxDecoration brandRaised({double radius = 26}) => BoxDecoration(
   ],
 );
 
-/// Espacio inferior que dejan las pestanas para que la barra flotante no tape
-/// el ultimo elemento.
 const tabBarGap = 108.0;
 
 String initialsOf(String name) {
@@ -61,8 +56,6 @@ String initialsOf(String name) {
   return parts.take(2).map((w) => w[0].toUpperCase()).join();
 }
 
-/// El diseno guarda un color por contacto. Aca se deriva del id para no agregar
-/// una columna: mismo usuario, mismo color siempre.
 Color avatarColorFor(String seed) {
   if (seed.isEmpty) return avatarPalette.first;
   var hash = 0;
@@ -157,7 +150,6 @@ class SoftCard extends StatelessWidget {
   }
 }
 
-/// Filas separadas por una linea de pelo, sin linea despues de la ultima.
 class SoftList extends StatelessWidget {
   final List<Widget> children;
 

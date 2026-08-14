@@ -12,8 +12,6 @@ import 'package:prueba_tecnica/presentation/widgets/soft.dart';
 
 enum MovementFilter { all, sent, received }
 
-/// Pantalla suelta con bloc propio y boton para transferir. Dentro de la app la
-/// pestana usa [TransfersView]: el boton vive en la barra inferior.
 class TransfersPage extends StatelessWidget {
   final User user;
 
@@ -116,7 +114,6 @@ class _TransfersViewState extends State<TransfersView> {
       children: [
         const PageHeading(text: 'Historial'),
         const SizedBox(height: 18),
-        // Los tres chips no caben en una pantalla angosta: se desplazan.
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(

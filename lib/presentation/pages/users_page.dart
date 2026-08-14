@@ -8,8 +8,6 @@ import 'package:prueba_tecnica/presentation/blocs/users_bloc.dart';
 import 'package:prueba_tecnica/presentation/pages/user_form_page.dart';
 import 'package:prueba_tecnica/presentation/widgets/soft.dart';
 
-/// Pantalla suelta con su propio bloc. Dentro de la app la pestana usa
-/// [UsersView], que toma el bloc que ya vive en el shell.
 class UsersPage extends StatelessWidget {
   const UsersPage({super.key});
 

@@ -30,9 +30,6 @@ import 'package:prueba_tecnica/presentation/blocs/users_bloc.dart';
 import 'package:prueba_tecnica/presentation/pages/home_page.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-/// El shell resuelve sus blocs con get_it, asi que aca se registran a mano
-/// contra una base en memoria. Cubre la barra inferior y el cambio de pestana,
-/// que es lo unico que no toca ninguna otra prueba.
 void main() {
   late Database db;
   late AuthBloc authBloc;
@@ -96,7 +93,6 @@ void main() {
         ),
       ),
     );
-    // Las listas llegan por SQLite real, que el reloj falso no avanza.
     await tester.runAsync(
       () => Future<void>.delayed(const Duration(milliseconds: 300)),
     );
@@ -114,7 +110,6 @@ void main() {
   testWidgets('la barra inferior cambia de pestana', (tester) async {
     await open(tester);
 
-    // Los accesos rapidos usan las mismas palabras: la barra es la ultima.
     await tester.tap(find.text('Historial').last);
     await tester.pump(const Duration(milliseconds: 300));
     expect(find.text('No hay movimientos'), findsOneWidget);

@@ -18,8 +18,6 @@ import 'package:prueba_tecnica/presentation/pages/user_form_page.dart';
 import 'package:prueba_tecnica/presentation/pages/users_page.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-/// Recorre el CRUD sobre la pantalla real. Se inyecta el bloc a mano en vez
-/// de usar get_it para que cada test tenga su propia base en memoria.
 void main() {
   late Database db;
   late UsersBloc usersBloc;
@@ -69,7 +67,6 @@ void main() {
     ),
   );
 
-  /// Espera el trabajo real (SQLite + bcrypt) que el reloj falso no avanza.
   Future<void> waitFor(
     WidgetTester tester,
     bool Function(UsersState) matcher,
@@ -89,14 +86,11 @@ void main() {
     await tester.pumpWidget(app());
     await tester.tap(find.text('abrir'));
     await tester.pump();
-    // No se usa pumpAndSettle: mientras carga hay un spinner que anima sin fin.
     await tester.pump(const Duration(milliseconds: 400));
     usersBloc.add(const UsersRequested());
     await waitFor(tester, (s) => s is UsersReady);
   }
 
-  /// Los campos no tienen label dentro del input (el diseno lo pone encima),
-  /// asi que se toman por posicion: nombre, correo, contrasena.
   Finder field(int index) => find.byType(TextFormField).at(index);
 
   Future<void> openForm(WidgetTester tester) async {

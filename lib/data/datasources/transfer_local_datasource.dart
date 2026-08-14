@@ -19,9 +19,6 @@ class TransferLocalDataSource {
     return rows.map(transferFromRow).toList();
   }
 
-  /// Debitar, acreditar y registrar son un solo hecho: o pasan los tres o no
-  /// pasa ninguno. Si el debito deja el saldo en negativo, el CHECK de la tabla
-  /// lanza y la transaccion se deshace completa, incluido el movimiento.
   Future<void> insertAndMoveBalances(Transfer transfer) => _db.transaction((
     txn,
   ) async {

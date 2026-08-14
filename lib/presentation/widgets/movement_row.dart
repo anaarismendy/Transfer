@@ -4,8 +4,6 @@ import 'package:prueba_tecnica/core/format.dart';
 import 'package:prueba_tecnica/core/theme.dart';
 import 'package:prueba_tecnica/domain/entities/transfer.dart';
 
-/// Enviado o recibido no se guarda: se deduce de si el usuario de la sesion es
-/// el origen o el destino de la transferencia.
 class MovementRow extends StatelessWidget {
   final Transfer transfer;
   final String currentUserId;

@@ -12,8 +12,6 @@ import 'package:prueba_tecnica/domain/entities/user.dart';
 import 'package:prueba_tecnica/domain/opening_balance.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-/// Ejercita el esquema real sobre una base en memoria. `flutter analyze` no
-/// valida cadenas SQL, asi que sin esto el esquema viajaria sin ejecutarse.
 void main() {
   late Database db;
   late UserRepositoryImpl users;
@@ -300,7 +298,6 @@ void main() {
         amountInCents: 400000,
       );
 
-      // Como quedaria una base vieja: la columna recien agregada arranca en 0.
       await db.execute('UPDATE users SET balance_in_cents = 0');
       await AppDatabase.recomputeBalances(db);
 
@@ -317,8 +314,6 @@ void main() {
         amountInCents: 150000,
       );
 
-      // La entidad que llega trae el saldo viejo, como pasaria con una pantalla
-      // abierta desde antes de la transferencia.
       await users.update(ana.copyWith(name: 'Ana Maria'));
 
       expect(await balanceOf(ana.id), openingBalanceInCents - 150000);

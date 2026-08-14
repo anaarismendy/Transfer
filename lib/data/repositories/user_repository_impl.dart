@@ -1,4 +1,4 @@
-﻿import 'package:injectable/injectable.dart';
+import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
 
@@ -89,8 +89,6 @@ class UserRepositoryImpl implements UserRepository {
       final affected = await _local.delete(id);
       return affected == 0 ? const Err(NotFoundFailure()) : const Ok(null);
     } on DatabaseException catch (e) {
-      // ponytail: sqflite no expone isForeignKeyConstraintError, y sus propios
-      // helpers tambien miran el mensaje. Si algun dia lo agrega, cambiar por el.
       return e.toString().contains('FOREIGN KEY')
           ? const Err(UserHasTransfersFailure())
           : const Err(StorageFailure());
