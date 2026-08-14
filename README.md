@@ -198,14 +198,29 @@ mejor con datos relacionales. `domain` no cambió ni una línea en esa migració
 flutter test
 ```
 
-101 pruebas en cuatro niveles:
+104 pruebas. `test/` espeja las carpetas de `lib/`, así que cada archivo se
+prueba donde vive:
 
-- **Unitarias puras** — mappers, formato de dinero, fechas y teclado, hashing
-- **Esquema SQL** — `UNIQUE`, ambos `CHECK`, llaves foráneas y orden del
-  historial, contra SQLite real en memoria
-- **Casos de uso** — las reglas de negocio contra la base real
-- **Widget** — los tres flujos completos y el shell con sus pestañas, sobre las
-  pantallas reales
+```
+test/
+├── support/harness.dart         base en memoria, repos, casos de uso y blocs
+├── core/                        formato de dinero, fechas y teclado
+├── data/
+│   ├── datasources/             esquema en disco y migración v1 → v2
+│   ├── models/                  mappers entidad ↔ fila
+│   ├── repositories/            traducción de excepción a Failure, saldos
+│   └── services/                hashing con bcrypt
+├── domain/usecases/             una prueba por caso de uso
+└── presentation/pages/          las pantallas reales
+```
+
+`support/harness.dart` no espeja nada de `lib`: es el andamio. Arma la base en
+memoria, los repositorios, los casos de uso y los blocs, y se encarga de cerrar
+todo. Sin él, veinte archivos repetirían el mismo cableado de quince líneas.
+
+Los cuatro niveles siguen ahí, ahora ubicados por capa: unitarias puras en
+`core` y `data/models`, esquema SQL en `data`, reglas de negocio en `domain`, y
+pantallas reales en `presentation`.
 
 Los tests de pantalla usan una ventana de 430x1240 en vez del lienzo de 800x600
 que trae Flutter. No es cosmético: encontró cuatro desbordes reales que en un

@@ -1,94 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:prueba_tecnica/core/theme.dart';
-import 'package:prueba_tecnica/data/datasources/app_database.dart';
-import 'package:prueba_tecnica/data/datasources/session_local_datasource.dart';
-import 'package:prueba_tecnica/data/datasources/user_local_datasource.dart';
-import 'package:prueba_tecnica/data/repositories/auth_repository_impl.dart';
-import 'package:prueba_tecnica/data/repositories/user_repository_impl.dart';
-import 'package:prueba_tecnica/data/services/bcrypt_password_hasher.dart';
-import 'package:prueba_tecnica/domain/usecases/create_user.dart';
-import 'package:prueba_tecnica/domain/usecases/delete_user.dart';
-import 'package:prueba_tecnica/domain/usecases/get_users.dart';
 import 'package:prueba_tecnica/domain/usecases/seed_default_user.dart';
-import 'package:prueba_tecnica/domain/usecases/update_user.dart';
 import 'package:prueba_tecnica/presentation/blocs/users_bloc.dart';
 import 'package:prueba_tecnica/presentation/pages/user_form_page.dart';
 import 'package:prueba_tecnica/presentation/pages/users_page.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+
+import '../../support/harness.dart';
 
 void main() {
-  late Database db;
-  late UsersBloc usersBloc;
+  late Harness h;
+  late UsersBloc bloc;
 
   setUp(() async {
-    db = await AppDatabase.openInMemory();
-    final hasher = BcryptPasswordHasher();
-    final users = UserRepositoryImpl(UserLocalDataSource(db));
-    final auth = AuthRepositoryImpl(SessionLocalDataSource(db));
-
-    await SeedDefaultUser(users, hasher)();
-
-    usersBloc = UsersBloc(
-      GetUsers(users),
-      CreateUser(users, hasher),
-      UpdateUser(users, hasher),
-      DeleteUser(users, auth),
-    );
+    h = await Harness.inMemory();
+    await h.seedDefaultUser();
+    bloc = h.usersBloc;
+    addTearDown(bloc.close);
   });
 
-  tearDown(() async {
-    await usersBloc.close();
-    await db.close();
-  });
-
-  Widget app() => BlocProvider.value(
-    value: usersBloc,
-    child: MaterialApp(
-      theme: buildAppTheme(),
-      home: Builder(
-        builder: (context) => Scaffold(
-          body: Builder(
-            builder: (inner) => TextButton(
-              onPressed: () => Navigator.of(inner).push(
-                MaterialPageRoute(
-                  builder: (_) => BlocProvider.value(
-                    value: usersBloc,
-                    child: const Scaffold(body: UsersView()),
-                  ),
-                ),
+  Widget app() => hostAppWith(
+    bloc,
+    Builder(
+      builder: (context) => Scaffold(
+        body: TextButton(
+          onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => BlocProvider.value(
+                value: bloc,
+                child: const Scaffold(body: UsersView()),
               ),
-              child: const Text('abrir'),
             ),
           ),
+          child: const Text('abrir'),
         ),
       ),
     ),
   );
 
-  Future<void> waitFor(
-    WidgetTester tester,
-    bool Function(UsersState) matcher,
-  ) async {
-    await tester.pump();
-    if (!matcher(usersBloc.state)) {
-      await tester.runAsync(
-        () => usersBloc.stream
-            .firstWhere(matcher)
-            .timeout(const Duration(seconds: 15)),
-      );
-    }
-    await tester.pump(const Duration(milliseconds: 400));
-  }
-
   Future<void> openList(WidgetTester tester) async {
+    usePhone(tester);
     await tester.pumpWidget(app());
     await tester.tap(find.text('abrir'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
-    usersBloc.add(const UsersRequested());
-    await waitFor(tester, (s) => s is UsersReady);
+    bloc.add(const UsersRequested());
+    await waitForState(tester, bloc, (s) => s is UsersReady);
   }
 
   Finder field(int index) => find.byType(TextFormField).at(index);
@@ -124,7 +81,11 @@ void main() {
 
     await fillForm(tester, name: 'Ana Arismendy', email: 'ana@test.com');
     await tester.tap(find.text('Guardar contacto'));
-    await waitFor(tester, (s) => s is UsersReady && s.users.length == 2);
+    await waitForState(
+      tester,
+      bloc,
+      (s) => s is UsersReady && s.users.length == 2,
+    );
     await tester.pump(const Duration(milliseconds: 500));
 
     expect(
@@ -143,7 +104,7 @@ void main() {
 
     await fillForm(tester, name: 'Otro Admin', email: SeedDefaultUser.email);
     await tester.tap(find.text('Guardar contacto'));
-    await waitFor(tester, (s) => s is UsersReady && s.noticeIsError);
+    await waitForState(tester, bloc, (s) => s is UsersReady && s.noticeIsError);
 
     expect(
       find.byType(UserFormPage),
@@ -197,8 +158,9 @@ void main() {
     await tester.enterText(field(0), 'Admin Principal');
     await tester.pump();
     await tester.tap(find.text('Guardar contacto'));
-    await waitFor(
+    await waitForState(
       tester,
+      bloc,
       (s) => s is UsersReady && s.notice == 'Cambios guardados',
     );
     await tester.pump(const Duration(milliseconds: 500));
@@ -226,13 +188,21 @@ void main() {
     await openForm(tester);
     await fillForm(tester, name: 'Temporal', email: 'temp@test.com');
     await tester.tap(find.text('Guardar contacto'));
-    await waitFor(tester, (s) => s is UsersReady && s.users.length == 2);
+    await waitForState(
+      tester,
+      bloc,
+      (s) => s is UsersReady && s.users.length == 2,
+    );
     await tester.pump(const Duration(milliseconds: 500));
 
     await tester.tap(find.byIcon(Icons.delete_outline_rounded).last);
     await tester.pump(const Duration(milliseconds: 300));
     await tester.tap(find.text('Si'));
-    await waitFor(tester, (s) => s is UsersReady && s.users.length == 1);
+    await waitForState(
+      tester,
+      bloc,
+      (s) => s is UsersReady && s.users.length == 1,
+    );
     await tester.pump(const Duration(milliseconds: 500));
 
     expect(find.text('Temporal'), findsNothing);
@@ -244,7 +214,11 @@ void main() {
     await openForm(tester);
     await fillForm(tester, name: 'Ana Arismendy', email: 'ana@test.com');
     await tester.tap(find.text('Guardar contacto'));
-    await waitFor(tester, (s) => s is UsersReady && s.users.length == 2);
+    await waitForState(
+      tester,
+      bloc,
+      (s) => s is UsersReady && s.users.length == 2,
+    );
     await tester.pump(const Duration(milliseconds: 500));
 
     await tester.enterText(find.byType(TextFormField).first, 'ana');
