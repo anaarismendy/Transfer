@@ -4,6 +4,18 @@
 
 Esta es mi solución a la prueba técnica de desarrollador Flutter. Es una app para transferir dinero entre usuarios, con todo guardado en el dispositivo.
 
+### Visualización de la App
+<img width="373" height="835" alt="image" src="https://github.com/user-attachments/assets/abc7009b-482c-483b-a6a8-9e23702b5668" />
+<img width="373" height="831" alt="image" src="https://github.com/user-attachments/assets/877e0148-b911-4dc4-96b4-a712cdb786ea" 
+<img width="372" height="833" alt="image" src="https://github.com/user-attachments/assets/16786b1c-25ce-47be-8c37-ce108f8d6af3" />
+<img width="372" height="830" alt="image" src="https://github.com/user-attachments/assets/31e5a40b-55ca-4d29-bf4b-c3a7a408d453" />
+<img width="370" height="832" alt="image" src="https://github.com/user-attachments/assets/85827240-1733-43f0-8e41-5bc7e60c8c38" />
+<img width="376" height="833" alt="image" src="https://github.com/user-attachments/assets/d4327ab0-4768-421a-959b-73e1b5727ffd" />
+<img width="371" height="832" alt="image" src="https://github.com/user-attachments/assets/5120d7de-00df-4982-9997-e937bb080a6f" />
+<img width="372" height="829" alt="image" src="https://github.com/user-attachments/assets/dc4bd7dd-7e2c-4d7f-ba6e-d758db086b85" />
+<img width="367" height="832" alt="image" src="https://github.com/user-attachments/assets/2be25c6f-23dd-4429-b2f1-b2ae8ea7a5d2" />
+
+
 ## Qué hace la app
 
 La app tiene tres partes principales:
@@ -132,3 +144,5 @@ Si quieres correr todas las pruebas que escribí, es un solo comando:
 ```bash
 flutter test
 ```
+
+
