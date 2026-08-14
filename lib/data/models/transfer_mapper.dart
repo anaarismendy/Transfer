@@ -1,14 +1,14 @@
-﻿import 'package:prueba_tecnica/domain/entities/transfer.dart';
+import 'package:prueba_tecnica/domain/entities/transfer.dart';
 
 extension TransferMapper on Transfer {
   Map<String, Object?> toRow() => {
-        'id': id,
-        'source_user_id': sourceUserId,
-        'destination_user_id': destinationUserId,
-        'amount_in_cents': amountInCents,
-        'description': description,
-        'created_at': createdAt.millisecondsSinceEpoch,
-      };
+    'id': id,
+    'source_user_id': sourceUserId,
+    'destination_user_id': destinationUserId,
+    'amount_in_cents': amountInCents,
+    'description': description,
+    'created_at': createdAt.millisecondsSinceEpoch,
+  };
 }
 
 Transfer transferFromRow(Map<String, Object?> row) {

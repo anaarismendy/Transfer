@@ -1,4 +1,5 @@
 ﻿import 'package:injectable/injectable.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
 
 import 'package:prueba_tecnica/core/errors/failures.dart';
@@ -39,8 +40,14 @@ class TransferRepositoryImpl implements TransferRepository {
     );
 
     try {
-      await _local.insert(transfer);
+      await _local.insertAndMoveBalances(transfer);
       return Ok(transfer);
+    } on DatabaseException catch (e) {
+      // El CHECK con nombre es lo que distingue "no le alcanza" de cualquier
+      // otro fallo de base.
+      return e.toString().contains('balance_not_negative')
+          ? const Err(InsufficientFundsFailure())
+          : const Err(StorageFailure());
     } catch (_) {
       return const Err(StorageFailure());
     }

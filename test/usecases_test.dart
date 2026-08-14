@@ -10,6 +10,7 @@ import 'package:prueba_tecnica/data/repositories/transfer_repository_impl.dart';
 import 'package:prueba_tecnica/data/repositories/user_repository_impl.dart';
 import 'package:prueba_tecnica/data/services/bcrypt_password_hasher.dart';
 import 'package:prueba_tecnica/domain/entities/user.dart';
+import 'package:prueba_tecnica/domain/opening_balance.dart';
 import 'package:prueba_tecnica/domain/usecases/create_transfer.dart';
 import 'package:prueba_tecnica/domain/usecases/create_user.dart';
 import 'package:prueba_tecnica/domain/usecases/delete_user.dart';
@@ -38,7 +39,8 @@ void main() {
   late GetTransfers getTransfers;
 
   Failure? failureOf(Result<Object?> r) => r.fold((f) => f, (_) => null);
-  T valueOf<T>(Result<T> r) => r.fold((f) => throw StateError(f.message), (v) => v);
+  T valueOf<T>(Result<T> r) =>
+      r.fold((f) => throw StateError(f.message), (v) => v);
 
   setUp(() async {
     db = await AppDatabase.openInMemory();
@@ -61,8 +63,8 @@ void main() {
   tearDown(() => db.close());
 
   Future<User> newUser([String email = 'ana@test.com']) async => valueOf(
-        await createUser(name: 'Ana', email: email, password: 'Secreta123'),
-      );
+    await createUser(name: 'Ana', email: email, password: 'Secreta123'),
+  );
 
   group('CreateUser', () {
     test('crea el usuario y guarda un hash, no la contrasena', () async {
@@ -74,19 +76,31 @@ void main() {
     });
 
     test('rechaza nombre vacio', () async {
-      final r = await createUser(name: '   ', email: 'a@b.co', password: 'Secreta123');
+      final r = await createUser(
+        name: '   ',
+        email: 'a@b.co',
+        password: 'Secreta123',
+      );
 
       expect(failureOf(r), isA<ValidationFailure>());
     });
 
     test('rechaza correo con formato invalido', () async {
-      final r = await createUser(name: 'Ana', email: 'no-es-correo', password: 'Secreta123');
+      final r = await createUser(
+        name: 'Ana',
+        email: 'no-es-correo',
+        password: 'Secreta123',
+      );
 
       expect(failureOf(r), isA<ValidationFailure>());
     });
 
     test('rechaza contrasena corta', () async {
-      final r = await createUser(name: 'Ana', email: 'a@b.co', password: 'corta');
+      final r = await createUser(
+        name: 'Ana',
+        email: 'a@b.co',
+        password: 'corta',
+      );
 
       expect(failureOf(r), isA<ValidationFailure>());
     });
@@ -94,14 +108,22 @@ void main() {
     test('rechaza correo duplicado', () async {
       await newUser();
 
-      final r = await createUser(name: 'Otra', email: 'ana@test.com', password: 'Secreta123');
+      final r = await createUser(
+        name: 'Otra',
+        email: 'ana@test.com',
+        password: 'Secreta123',
+      );
 
       expect(failureOf(r), isA<DuplicateEmailFailure>());
     });
 
     test('normaliza el correo a minusculas', () async {
       final user = valueOf(
-        await createUser(name: 'Ana', email: '  ANA@Test.COM ', password: 'Secreta123'),
+        await createUser(
+          name: 'Ana',
+          email: '  ANA@Test.COM ',
+          password: 'Secreta123',
+        ),
       );
 
       expect(user.email, 'ana@test.com');
@@ -109,14 +131,17 @@ void main() {
   });
 
   group('Login', () {
-    test('entra con las credenciales correctas y deja la sesion abierta', () async {
-      final created = await newUser();
+    test(
+      'entra con las credenciales correctas y deja la sesion abierta',
+      () async {
+        final created = await newUser();
 
-      final user = valueOf(await login('ana@test.com', 'Secreta123'));
+        final user = valueOf(await login('ana@test.com', 'Secreta123'));
 
-      expect(user.id, created.id);
-      expect(valueOf(await getCurrentUser())?.id, created.id);
-    });
+        expect(user.id, created.id);
+        expect(valueOf(await getCurrentUser())?.id, created.id);
+      },
+    );
 
     test('acepta el correo con otras mayusculas', () async {
       await newUser();
@@ -175,43 +200,62 @@ void main() {
       expect(valueOf(await getCurrentUser()), isNull);
     });
 
-    test('si la sesion apunta a un usuario que ya no existe, devuelve nulo', () async {
-      await auth.saveSession('fantasma');
+    test(
+      'si la sesion apunta a un usuario que ya no existe, devuelve nulo',
+      () async {
+        await auth.saveSession('fantasma');
 
-      expect(
-        valueOf(await getCurrentUser()),
-        isNull,
-        reason: 'una sesion huerfana debe mandar al login, no romper la app',
-      );
-    });
+        expect(
+          valueOf(await getCurrentUser()),
+          isNull,
+          reason: 'una sesion huerfana debe mandar al login, no romper la app',
+        );
+      },
+    );
   });
 
   group('UpdateUser', () {
-    test('cambia el nombre y conserva la contrasena si no se envia una nueva', () async {
-      final ana = await newUser();
+    test(
+      'cambia el nombre y conserva la contrasena si no se envia una nueva',
+      () async {
+        final ana = await newUser();
 
-      final updated = valueOf(
-        await updateUser(id: ana.id, name: 'Ana Maria', email: ana.email),
-      );
+        final updated = valueOf(
+          await updateUser(id: ana.id, name: 'Ana Maria', email: ana.email),
+        );
 
-      expect(updated.name, 'Ana Maria');
-      expect(updated.passwordHash, ana.passwordHash);
-      expect(failureOf(await login('ana@test.com', 'Secreta123')), isNull);
-    });
+        expect(updated.name, 'Ana Maria');
+        expect(updated.passwordHash, ana.passwordHash);
+        expect(failureOf(await login('ana@test.com', 'Secreta123')), isNull);
+      },
+    );
 
     test('cambia la contrasena cuando se envia una nueva', () async {
       final ana = await newUser();
 
-      await updateUser(id: ana.id, name: ana.name, email: ana.email, newPassword: 'NuevaClave1');
+      await updateUser(
+        id: ana.id,
+        name: ana.name,
+        email: ana.email,
+        newPassword: 'NuevaClave1',
+      );
 
-      expect(failureOf(await login('ana@test.com', 'Secreta123')), isA<InvalidCredentialsFailure>());
+      expect(
+        failureOf(await login('ana@test.com', 'Secreta123')),
+        isA<InvalidCredentialsFailure>(),
+      );
       expect(failureOf(await login('ana@test.com', 'NuevaClave1')), isNull);
     });
 
     test('rechaza una contrasena nueva demasiado corta', () async {
       final ana = await newUser();
 
-      final r = await updateUser(id: ana.id, name: ana.name, email: ana.email, newPassword: 'x');
+      final r = await updateUser(
+        id: ana.id,
+        name: ana.name,
+        email: ana.email,
+        newPassword: 'x',
+      );
 
       expect(failureOf(r), isA<ValidationFailure>());
     });
@@ -248,7 +292,10 @@ void main() {
         amountInCents: 5000,
       );
 
-      expect(failureOf(await deleteUser(ana.id)), isA<UserHasTransfersFailure>());
+      expect(
+        failureOf(await deleteUser(ana.id)),
+        isA<UserHasTransfersFailure>(),
+      );
     });
   });
 
@@ -271,24 +318,57 @@ void main() {
       expect(valueOf(await getTransfers()), hasLength(1));
     });
 
+    test('sin saldo suficiente el mensaje habla del saldo', () async {
+      final ana = await newUser();
+      final luis = await newUser('luis@test.com');
+
+      final failure = failureOf(
+        await createTransfer(
+          sourceUserId: ana.id,
+          destinationUserId: luis.id,
+          amountInCents: openingBalanceInCents + 1,
+        ),
+      );
+
+      expect(failure, isA<InsufficientFundsFailure>());
+      expect(valueOf(await getTransfers()), isEmpty);
+    });
+
+    test('se puede enviar el saldo completo', () async {
+      final ana = await newUser();
+      final luis = await newUser('luis@test.com');
+
+      final everything = await createTransfer(
+        sourceUserId: ana.id,
+        destinationUserId: luis.id,
+        amountInCents: openingBalanceInCents,
+      );
+
+      expect(failureOf(everything), isNull, reason: 'el limite es inclusivo');
+    });
+
     test('rechaza valor cero o negativo con un error especifico', () async {
       final ana = await newUser();
       final luis = await newUser('luis@test.com');
 
       expect(
-        failureOf(await createTransfer(
-          sourceUserId: ana.id,
-          destinationUserId: luis.id,
-          amountInCents: 0,
-        )),
+        failureOf(
+          await createTransfer(
+            sourceUserId: ana.id,
+            destinationUserId: luis.id,
+            amountInCents: 0,
+          ),
+        ),
         isA<InvalidAmountFailure>(),
       );
       expect(
-        failureOf(await createTransfer(
-          sourceUserId: ana.id,
-          destinationUserId: luis.id,
-          amountInCents: -100,
-        )),
+        failureOf(
+          await createTransfer(
+            sourceUserId: ana.id,
+            destinationUserId: luis.id,
+            amountInCents: -100,
+          ),
+        ),
         isA<InvalidAmountFailure>(),
       );
     });
@@ -297,11 +377,13 @@ void main() {
       final ana = await newUser();
 
       expect(
-        failureOf(await createTransfer(
-          sourceUserId: ana.id,
-          destinationUserId: ana.id,
-          amountInCents: 100,
-        )),
+        failureOf(
+          await createTransfer(
+            sourceUserId: ana.id,
+            destinationUserId: ana.id,
+            amountInCents: 100,
+          ),
+        ),
         isA<SameUserTransferFailure>(),
       );
     });
@@ -310,11 +392,13 @@ void main() {
       final ana = await newUser();
 
       expect(
-        failureOf(await createTransfer(
-          sourceUserId: ana.id,
-          destinationUserId: 'fantasma',
-          amountInCents: 100,
-        )),
+        failureOf(
+          await createTransfer(
+            sourceUserId: ana.id,
+            destinationUserId: 'fantasma',
+            amountInCents: 100,
+          ),
+        ),
         isA<NotFoundFailure>(),
       );
     });

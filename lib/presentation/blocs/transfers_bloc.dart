@@ -1,4 +1,4 @@
-﻿import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:prueba_tecnica/core/result.dart';
@@ -73,17 +73,21 @@ class TransfersBloc extends Bloc<TransfersEvent, TransfersState> {
   final CreateTransfer _createTransfer;
 
   TransfersBloc(this._getUsers, this._getTransfers, this._createTransfer)
-      : super(const TransfersLoading()) {
+    : super(const TransfersLoading()) {
     on<TransfersRequested>((_, emit) async => emit(await _reload()));
     on<TransferSubmitted>(_onSubmitted);
   }
 
   Future<TransfersState> _reload({String? error, Transfer? created}) async {
     final usersResult = await _getUsers();
-    if (usersResult case Err(:final failure)) return TransfersLoadFailed(failure.message);
+    if (usersResult case Err(:final failure)) {
+      return TransfersLoadFailed(failure.message);
+    }
 
     final transfersResult = await _getTransfers();
-    if (transfersResult case Err(:final failure)) return TransfersLoadFailed(failure.message);
+    if (transfersResult case Err(:final failure)) {
+      return TransfersLoadFailed(failure.message);
+    }
 
     return TransfersReady(
       users: (usersResult as Ok<List<User>>).value,
@@ -93,7 +97,10 @@ class TransfersBloc extends Bloc<TransfersEvent, TransfersState> {
     );
   }
 
-  Future<void> _onSubmitted(TransferSubmitted event, Emitter<TransfersState> emit) async {
+  Future<void> _onSubmitted(
+    TransferSubmitted event,
+    Emitter<TransfersState> emit,
+  ) async {
     final result = await _createTransfer(
       sourceUserId: event.sourceUserId,
       destinationUserId: event.destinationUserId,

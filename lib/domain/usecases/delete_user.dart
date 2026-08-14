@@ -1,4 +1,4 @@
-﻿import 'package:injectable/injectable.dart';
+import 'package:injectable/injectable.dart';
 
 import 'package:prueba_tecnica/core/errors/failures.dart';
 import 'package:prueba_tecnica/core/result.dart';
@@ -19,7 +19,9 @@ class DeleteUser {
       case Ok(:final value):
         if (value == id) {
           return const Err(
-            ValidationFailure('No puedes eliminar el usuario con el que iniciaste sesion'),
+            ValidationFailure(
+              'No puedes eliminar el usuario con el que iniciaste sesion',
+            ),
           );
         }
     }

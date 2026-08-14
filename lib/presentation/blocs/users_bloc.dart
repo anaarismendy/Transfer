@@ -1,4 +1,4 @@
-﻿import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:prueba_tecnica/core/result.dart';
@@ -65,8 +65,12 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
   final UpdateUser _updateUser;
   final DeleteUser _deleteUser;
 
-  UsersBloc(this._getUsers, this._createUser, this._updateUser, this._deleteUser)
-      : super(const UsersLoading()) {
+  UsersBloc(
+    this._getUsers,
+    this._createUser,
+    this._updateUser,
+    this._deleteUser,
+  ) : super(const UsersLoading()) {
     on<UsersRequested>((_, emit) async => emit(await _reload()));
     on<UserSubmitted>(_onSubmitted);
     on<UserRemoved>(_onRemoved);
@@ -76,11 +80,18 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
     final result = await _getUsers();
     return switch (result) {
       Err(:final failure) => UsersLoadFailed(failure.message),
-      Ok(:final value) => UsersReady(value, notice: notice, noticeIsError: isError),
+      Ok(:final value) => UsersReady(
+        value,
+        notice: notice,
+        noticeIsError: isError,
+      ),
     };
   }
 
-  Future<void> _onSubmitted(UserSubmitted event, Emitter<UsersState> emit) async {
+  Future<void> _onSubmitted(
+    UserSubmitted event,
+    Emitter<UsersState> emit,
+  ) async {
     final result = event.isNew
         ? await _createUser(
             name: event.name,
@@ -98,7 +109,11 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
       case Err(:final failure):
         emit(await _reload(notice: failure.message, isError: true));
       case Ok():
-        emit(await _reload(notice: event.isNew ? 'Usuario creado' : 'Cambios guardados'));
+        emit(
+          await _reload(
+            notice: event.isNew ? 'Usuario creado' : 'Cambios guardados',
+          ),
+        );
     }
   }
 

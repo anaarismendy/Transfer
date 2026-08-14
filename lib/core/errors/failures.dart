@@ -1,4 +1,4 @@
-﻿sealed class Failure {
+sealed class Failure {
   final String message;
   const Failure(this.message);
 }
@@ -12,11 +12,15 @@ class ValidationFailure extends Failure {
 }
 
 class InvalidCredentialsFailure extends Failure {
-  const InvalidCredentialsFailure([super.message = 'Usuario o contrasena incorrectos']);
+  const InvalidCredentialsFailure([
+    super.message = 'Usuario o contrasena incorrectos',
+  ]);
 }
 
 class DuplicateEmailFailure extends Failure {
-  const DuplicateEmailFailure([super.message = 'Ya existe un usuario con ese correo']);
+  const DuplicateEmailFailure([
+    super.message = 'Ya existe un usuario con ese correo',
+  ]);
 }
 
 class NotFoundFailure extends Failure {
@@ -24,15 +28,26 @@ class NotFoundFailure extends Failure {
 }
 
 class SameUserTransferFailure extends Failure {
-  const SameUserTransferFailure([super.message = 'El origen y el destino no pueden ser el mismo usuario']);
+  const SameUserTransferFailure([
+    super.message = 'El origen y el destino no pueden ser el mismo usuario',
+  ]);
+}
+
+class InsufficientFundsFailure extends Failure {
+  const InsufficientFundsFailure([
+    super.message = 'El saldo no alcanza para esta transferencia',
+  ]);
 }
 
 class InvalidAmountFailure extends Failure {
-  const InvalidAmountFailure([super.message = 'El valor debe ser mayor a cero']);
+  const InvalidAmountFailure([
+    super.message = 'El valor debe ser mayor a cero',
+  ]);
 }
 
 class UserHasTransfersFailure extends Failure {
   const UserHasTransfersFailure([
-    super.message = 'No se puede eliminar un usuario con transferencias registradas',
+    super.message =
+        'No se puede eliminar un usuario con transferencias registradas',
   ]);
 }

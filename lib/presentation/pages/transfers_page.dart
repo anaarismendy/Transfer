@@ -1,200 +1,196 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:prueba_tecnica/core/di/injection.dart';
-import 'package:prueba_tecnica/core/format.dart';
 import 'package:prueba_tecnica/core/theme.dart';
+import 'package:prueba_tecnica/domain/entities/transfer.dart';
+import 'package:prueba_tecnica/domain/entities/user.dart';
 import 'package:prueba_tecnica/presentation/blocs/transfers_bloc.dart';
-import 'transfer_form_page.dart';
+import 'package:prueba_tecnica/presentation/pages/transfer_form_page.dart';
+import 'package:prueba_tecnica/presentation/widgets/movement_row.dart';
+import 'package:prueba_tecnica/presentation/widgets/soft.dart';
 
+enum MovementFilter { all, sent, received }
+
+/// Pantalla suelta con bloc propio y boton para transferir. Dentro de la app la
+/// pestana usa [TransfersView]: el boton vive en la barra inferior.
 class TransfersPage extends StatelessWidget {
-  const TransfersPage({super.key});
+  final User user;
+
+  const TransfersPage({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => getIt<TransfersBloc>()..add(const TransfersRequested()),
-      child: const TransfersView(),
-    );
-  }
-}
-
-/// La vista sin el BlocProvider, para poder inyectar un bloc propio en tests.
-class TransfersView extends StatelessWidget {
-  const TransfersView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Transferencias')),
-      floatingActionButton: BlocBuilder<TransfersBloc, TransfersState>(
-        builder: (context, state) {
-          if (state is! TransfersReady) return const SizedBox.shrink();
-
-          final bloc = context.read<TransfersBloc>();
-          final enoughUsers = state.users.length >= 2;
-
-          return FloatingActionButton.extended(
-            backgroundColor: enoughUsers ? turquoise : mistEdge,
-            foregroundColor: enoughUsers ? Colors.white : teal,
-            icon: const Icon(Icons.add),
-            label: const Text('Nueva transferencia'),
-            onPressed: enoughUsers
-                ? () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => BlocProvider.value(
-                          value: bloc,
-                          child: TransferFormPage(users: state.users),
-                        ),
-                      ),
-                    )
-                : () => ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(
-                    const SnackBar(
-                      content: Text('Necesitas al menos dos usuarios para transferir'),
-                    ),
+      child: Builder(
+        builder: (context) => Scaffold(
+          body: ScreenBackground(child: TransfersView(currentUser: user)),
+          floatingActionButton: Container(
+            width: 56,
+            height: 56,
+            decoration: BoxDecoration(
+              gradient: brandGradient,
+              shape: BoxShape.circle,
+            ),
+            child: IconButton(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => BlocProvider.value(
+                    value: context.read<TransfersBloc>(),
+                    child: TransferFormPage(me: user),
                   ),
-          );
-        },
-      ),
-      body: BlocBuilder<TransfersBloc, TransfersState>(
-        builder: (context, state) => switch (state) {
-          TransfersLoading() => const Center(child: CircularProgressIndicator(color: turquoise)),
-          TransfersLoadFailed(:final message) => _LoadFailed(message: message),
-          TransfersReady(:final transfers) when transfers.isEmpty => const _Empty(),
-          TransfersReady() => _History(state: state),
-        },
-      ),
-    );
-  }
-}
-
-class _History extends StatelessWidget {
-  final TransfersReady state;
-
-  const _History({required this.state});
-
-  @override
-  Widget build(BuildContext context) {
-    final transfers = state.transfers;
-
-    return Center(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 640),
-        child: ListView.separated(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 96),
-          itemCount: transfers.length + 1,
-          separatorBuilder: (_, _) => const SizedBox(height: 10),
-          itemBuilder: (context, index) {
-            if (index == 0) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 6, left: 4),
-                child: Text(
-                  '${transfers.length} ${transfers.length == 1 ? 'MOVIMIENTO' : 'MOVIMIENTOS'}',
-                  style: eyebrow.copyWith(color: turquoise),
-                ),
-              );
-            }
-
-            final transfer = transfers[index - 1];
-            return Card(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            '${state.nameOf(transfer.sourceUserId)}  â†’  ${state.nameOf(transfer.destinationUserId)}',
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: deepAqua,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Text(
-                          formatMoney(transfer.amountInCents),
-                          style: tabular.copyWith(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w700,
-                            color: turquoise,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      formatDateTime(transfer.createdAt),
-                      style: tabular.copyWith(fontSize: 12, color: teal.withValues(alpha: 0.7)),
-                    ),
-                    if (transfer.description != null) ...[
-                      const SizedBox(height: 6),
-                      Text(
-                        transfer.description!,
-                        style: TextStyle(fontSize: 13, color: teal.withValues(alpha: 0.9)),
-                      ),
-                    ],
-                  ],
                 ),
               ),
-            );
+              icon: const Icon(
+                Icons.arrow_forward_rounded,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TransfersView extends StatefulWidget {
+  final User currentUser;
+
+  const TransfersView({super.key, required this.currentUser});
+
+  @override
+  State<TransfersView> createState() => _TransfersViewState();
+}
+
+class _TransfersViewState extends State<TransfersView> {
+  MovementFilter _filter = MovementFilter.all;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<TransfersBloc, TransfersState>(
+      listenWhen: (_, current) =>
+          current is TransfersReady && current.error != null,
+      listener: (context, state) => ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text((state as TransfersReady).error!),
+          backgroundColor: sentInk,
+        ),
+      ),
+      builder: (context, state) => SafeArea(
+        bottom: false,
+        child: switch (state) {
+          TransfersLoading() => const Center(
+            child: CircularProgressIndicator(color: violet),
+          ),
+          TransfersLoadFailed(:final message) => Center(
+            child: Padding(
+              padding: const EdgeInsets.all(32),
+              child: Text(
+                message,
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: sentInk, fontSize: 14),
+              ),
+            ),
+          ),
+          TransfersReady() => _history(state),
+        },
+      ),
+    );
+  }
+
+  Widget _history(TransfersReady ready) {
+    final me = widget.currentUser.id;
+    final visible = ready.transfers
+        .where(
+          (t) => switch (_filter) {
+            MovementFilter.all => true,
+            MovementFilter.sent => t.sourceUserId == me,
+            MovementFilter.received => t.destinationUserId == me,
           },
+        )
+        .toList();
+
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(20, 16, 20, tabBarGap),
+      children: [
+        const PageHeading(text: 'Historial'),
+        const SizedBox(height: 18),
+        // Los tres chips no caben en una pantalla angosta: se desplazan.
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              _chip('Todos', MovementFilter.all),
+              const SizedBox(width: 10),
+              _chip('Enviados', MovementFilter.sent),
+              const SizedBox(width: 10),
+              _chip('Recibidos', MovementFilter.received),
+            ],
+          ),
         ),
-      ),
+        const SizedBox(height: 18),
+        if (visible.isEmpty)
+          const SoftCard(
+            child: Padding(
+              padding: EdgeInsets.all(30),
+              child: Center(
+                child: Text(
+                  'No hay movimientos',
+                  style: TextStyle(fontSize: 13, color: muted),
+                ),
+              ),
+            ),
+          )
+        else
+          SoftList(
+            children: [for (final transfer in visible) _row(ready, transfer)],
+          ),
+      ],
     );
   }
-}
 
-class _Empty extends StatelessWidget {
-  const _Empty();
+  Widget _row(TransfersReady ready, Transfer transfer) {
+    final me = widget.currentUser.id;
+    final counterpartId = transfer.sourceUserId == me
+        ? transfer.destinationUserId
+        : transfer.sourceUserId;
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('SIN MOVIMIENTOS', style: eyebrow.copyWith(color: turquoise)),
-            const SizedBox(height: 10),
-            Text(
-              'Registra la primera transferencia para ver su comprobante aqui.',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: teal.withValues(alpha: 0.9), height: 1.5),
-            ),
-          ],
-        ),
-      ),
+    return MovementRow(
+      transfer: transfer,
+      currentUserId: me,
+      counterpartName: ready.nameOf(counterpartId),
     );
   }
-}
 
-class _LoadFailed extends StatelessWidget {
-  final String message;
+  Widget _chip(String label, MovementFilter value) {
+    final active = _filter == value;
 
-  const _LoadFailed({required this.message});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(message, textAlign: TextAlign.center, style: const TextStyle(color: danger)),
-            const SizedBox(height: 16),
-            FilledButton(
-              onPressed: () => context.read<TransfersBloc>().add(const TransfersRequested()),
-              child: const Text('Reintentar'),
-            ),
-          ],
+    return GestureDetector(
+      onTap: () => setState(() => _filter = value),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
+        decoration: BoxDecoration(
+          gradient: active ? brandGradient : null,
+          color: active ? null : surfaceSoft,
+          borderRadius: BorderRadius.circular(14),
+          boxShadow: active
+              ? [
+                  BoxShadow(
+                    color: const Color(0xFF8278C3).withValues(alpha: 0.35),
+                    offset: const Offset(4, 4),
+                    blurRadius: 10,
+                  ),
+                ]
+              : softShadows(spread: 0.7),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 12.5,
+            fontWeight: FontWeight.w600,
+            color: active ? Colors.white : inkSoft,
+          ),
         ),
       ),
     );

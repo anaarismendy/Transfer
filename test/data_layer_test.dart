@@ -24,9 +24,17 @@ void main() {
     });
 
     test('las columnas usan snake_case, como la tabla', () {
-      const user = User(id: '1', name: 'Ana', email: 'a@b.c', passwordHash: 'h');
+      const user = User(
+        id: '1',
+        name: 'Ana',
+        email: 'a@b.c',
+        passwordHash: 'h',
+      );
 
-      expect(user.toRow().keys, containsAll(['id', 'name', 'email', 'password_hash']));
+      expect(
+        user.toRow().keys,
+        containsAll(['id', 'name', 'email', 'password_hash']),
+      );
     });
 
     test('transferencia sobrevive el viaje de ida y vuelta', () {

@@ -1,47 +1,26 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
-import 'package:prueba_tecnica/core/theme.dart';
+import 'package:prueba_tecnica/presentation/widgets/soft.dart';
 
+/// El cuadro con la flecha: identidad de la app, se repite en el acceso y en el
+/// boton central de la barra.
 class Wordmark extends StatelessWidget {
-  final bool showTagline;
-  final double fontSize;
-  final Color color;
-  final Color ruleColor;
+  final double size;
 
-  const Wordmark({
-    super.key,
-    this.showTagline = true,
-    this.fontSize = 30,
-    this.color = mist,
-    this.ruleColor = aqua,
-  });
+  const Wordmark({super.key, this.size = 80});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          'TRANSFER',
-          style: TextStyle(
-            color: color,
-            fontSize: fontSize,
-            height: 1,
-            fontWeight: FontWeight.w300,
-            letterSpacing: fontSize * 0.3,
-          ),
-        ),
-        SizedBox(height: fontSize * 0.3),
-        Container(width: fontSize * 3, height: 1.5, color: ruleColor),
-        if (showTagline) ...[
-          const SizedBox(height: 10),
-          Text(
-            'CONSOLA DE TRANSFERENCIAS',
-            style: eyebrow.copyWith(color: color.withValues(alpha: 0.7)),
-          ),
-        ],
-      ],
+    return Container(
+      width: size,
+      height: size,
+      alignment: Alignment.center,
+      decoration: brandRaised(radius: size * 0.325),
+      child: Icon(
+        Icons.arrow_forward_rounded,
+        color: Colors.white,
+        size: size * 0.45,
+      ),
     );
   }
 }

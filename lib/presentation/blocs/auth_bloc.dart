@@ -1,4 +1,4 @@
-﻿import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:prueba_tecnica/domain/entities/user.dart';
@@ -56,30 +56,44 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final Logout _logout;
   final GetCurrentUser _getCurrentUser;
 
-  AuthBloc(this._login, this._logout, this._getCurrentUser) : super(const AuthUnknown()) {
+  AuthBloc(this._login, this._logout, this._getCurrentUser)
+    : super(const AuthUnknown()) {
     on<AuthCheckRequested>(_onCheckRequested);
     on<LoginRequested>(_onLoginRequested);
     on<LogoutRequested>(_onLogoutRequested);
   }
 
-  Future<void> _onCheckRequested(AuthCheckRequested event, Emitter<AuthState> emit) async {
+  Future<void> _onCheckRequested(
+    AuthCheckRequested event,
+    Emitter<AuthState> emit,
+  ) async {
     final result = await _getCurrentUser();
-    emit(result.fold(
-      (_) => const Unauthenticated(),
-      (user) => user == null ? const Unauthenticated() : Authenticated(user),
-    ));
+    emit(
+      result.fold(
+        (_) => const Unauthenticated(),
+        (user) => user == null ? const Unauthenticated() : Authenticated(user),
+      ),
+    );
   }
 
-  Future<void> _onLoginRequested(LoginRequested event, Emitter<AuthState> emit) async {
+  Future<void> _onLoginRequested(
+    LoginRequested event,
+    Emitter<AuthState> emit,
+  ) async {
     emit(const AuthInProgress());
     final result = await _login(event.email, event.password);
-    emit(result.fold(
-      (failure) => AuthFailed(failure.message),
-      (user) => Authenticated(user),
-    ));
+    emit(
+      result.fold(
+        (failure) => AuthFailed(failure.message),
+        (user) => Authenticated(user),
+      ),
+    );
   }
 
-  Future<void> _onLogoutRequested(LogoutRequested event, Emitter<AuthState> emit) async {
+  Future<void> _onLogoutRequested(
+    LogoutRequested event,
+    Emitter<AuthState> emit,
+  ) async {
     await _logout();
     emit(const Unauthenticated());
   }

@@ -45,12 +45,14 @@ class UserRepositoryImpl implements UserRepository {
     required String name,
     required String email,
     required String passwordHash,
+    required int balanceInCents,
   }) async {
     final user = User(
       id: const Uuid().v4(),
       name: name.trim(),
       email: email.trim().toLowerCase(),
       passwordHash: passwordHash,
+      balanceInCents: balanceInCents,
     );
 
     try {
@@ -86,8 +88,12 @@ class UserRepositoryImpl implements UserRepository {
     try {
       final affected = await _local.delete(id);
       return affected == 0 ? const Err(NotFoundFailure()) : const Ok(null);
-    } on DatabaseException catch (_) {
-      return const Err(UserHasTransfersFailure());
+    } on DatabaseException catch (e) {
+      // ponytail: sqflite no expone isForeignKeyConstraintError, y sus propios
+      // helpers tambien miran el mensaje. Si algun dia lo agrega, cambiar por el.
+      return e.toString().contains('FOREIGN KEY')
+          ? const Err(UserHasTransfersFailure())
+          : const Err(StorageFailure());
     } catch (_) {
       return const Err(StorageFailure());
     }

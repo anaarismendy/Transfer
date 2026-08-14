@@ -1,4 +1,4 @@
-﻿import 'package:injectable/injectable.dart';
+import 'package:injectable/injectable.dart';
 
 import 'package:prueba_tecnica/core/errors/failures.dart';
 import 'package:prueba_tecnica/core/result.dart';
@@ -19,7 +19,9 @@ class CreateTransfer {
     String? description,
   }) async {
     if (amountInCents <= 0) return const Err(InvalidAmountFailure());
-    if (sourceUserId == destinationUserId) return const Err(SameUserTransferFailure());
+    if (sourceUserId == destinationUserId) {
+      return const Err(SameUserTransferFailure());
+    }
 
     for (final id in [sourceUserId, destinationUserId]) {
       final found = await _users.getById(id);
@@ -28,7 +30,14 @@ class CreateTransfer {
           return Err(failure);
         case Ok(:final value):
           if (value == null) {
-            return const Err(NotFoundFailure('El usuario seleccionado ya no existe'));
+            return const Err(
+              NotFoundFailure('El usuario seleccionado ya no existe'),
+            );
+          }
+          // El CHECK de la tabla tambien lo impide, pero desde aca el mensaje
+          // dice que fue el saldo y no un error generico de base.
+          if (id == sourceUserId && value.balanceInCents < amountInCents) {
+            return const Err(InsufficientFundsFailure());
           }
       }
     }

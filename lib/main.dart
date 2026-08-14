@@ -40,9 +40,9 @@ class AuthGate extends StatelessWidget {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) => switch (state) {
         AuthUnknown() => const Scaffold(
-            backgroundColor: deepAqua,
-            body: Center(child: CircularProgressIndicator(color: aqua)),
-          ),
+          backgroundColor: bgTop,
+          body: Center(child: CircularProgressIndicator(color: violet)),
+        ),
         Authenticated(:final user) => HomePage(user: user),
         _ => const LoginPage(),
       },

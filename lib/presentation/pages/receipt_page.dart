@@ -1,148 +1,172 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 import 'package:prueba_tecnica/core/format.dart';
 import 'package:prueba_tecnica/core/theme.dart';
 import 'package:prueba_tecnica/domain/entities/transfer.dart';
-import 'package:prueba_tecnica/domain/entities/user.dart';
+import 'package:prueba_tecnica/presentation/widgets/soft.dart';
 
 class ReceiptPage extends StatelessWidget {
   final Transfer transfer;
-  final User source;
-  final User destination;
+  final String sourceName;
+  final String destinationName;
+  final VoidCallback? onNewTransfer;
 
   const ReceiptPage({
     super.key,
     required this.transfer,
-    required this.source,
-    required this.destination,
+    required this.sourceName,
+    required this.destinationName,
+    this.onNewTransfer,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: deepAqua,
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) => SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: constraints.maxHeight - 48),
-              child: Center(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 420),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(22),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'COMPROBANTE',
-                                    style: eyebrow.copyWith(color: turquoise),
-                                  ),
-                                  const Icon(Icons.check_circle, color: turquoise, size: 20),
-                                ],
-                              ),
-                              const SizedBox(height: 16),
-                              Text(
-                                formatMoney(transfer.amountInCents),
-                                style: tabular.copyWith(
-                                  fontSize: 34,
-                                  height: 1.1,
-                                  fontWeight: FontWeight.w600,
-                                  color: deepAqua,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                'Transferencia registrada',
-                                style: TextStyle(fontSize: 13, color: teal.withValues(alpha: 0.8)),
-                              ),
-                              const SizedBox(height: 20),
-                              const Divider(height: 1, color: mistEdge),
-                              const SizedBox(height: 16),
-                              _Row(label: 'ORIGEN', value: source.name, detail: source.email),
-                              const SizedBox(height: 14),
-                              _Row(
-                                label: 'DESTINO',
-                                value: destination.name,
-                                detail: destination.email,
-                              ),
-                              const SizedBox(height: 14),
-                              _Row(
-                                label: 'FECHA',
-                                value: formatDateTime(transfer.createdAt),
-                                monospaceValue: true,
-                              ),
-                              if (transfer.description != null) ...[
-                                const SizedBox(height: 14),
-                                _Row(label: 'DESCRIPCION', value: transfer.description!),
-                              ],
-                              const SizedBox(height: 14),
-                              _Row(
-                                label: 'COMPROBANTE No.',
-                                value: transfer.id.substring(0, 8).toUpperCase(),
-                                monospaceValue: true,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      FilledButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: const Text('Listo'),
-                      ),
-                    ],
+      body: ScreenBackground(
+        child: SafeArea(
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(20, 40, 20, 40),
+            children: [
+              Center(child: _check()),
+              const SizedBox(height: 24),
+              const Center(
+                child: Text(
+                  '¡Transferencia exitosa!',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    color: ink,
                   ),
                 ),
               ),
-            ),
+              const SizedBox(height: 8),
+              Center(
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      const TextSpan(text: 'Enviaste '),
+                      TextSpan(
+                        text: formatMoney(transfer.amountInCents),
+                        style: const TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      TextSpan(text: '\na $destinationName'),
+                    ],
+                  ),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 14.5,
+                    color: inkSoft,
+                    height: 1.5,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 28),
+              _receipt(),
+              const SizedBox(height: 28),
+              GradientButton(
+                label: 'Volver al inicio',
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              const SizedBox(height: 12),
+              if (onNewTransfer != null)
+                GestureDetector(
+                  onTap: onNewTransfer,
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: Center(
+                      child: Text(
+                        'Nueva transferencia',
+                        style: TextStyle(
+                          color: violet,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 13.5,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+            ],
           ),
         ),
       ),
     );
   }
-}
 
-class _Row extends StatelessWidget {
-  final String label;
-  final String value;
-  final String? detail;
-  final bool monospaceValue;
+  Widget _check() => TweenAnimationBuilder<double>(
+    tween: Tween(begin: 0.55, end: 1),
+    duration: const Duration(milliseconds: 400),
+    curve: Curves.easeOut,
+    builder: (context, value, child) =>
+        Transform.scale(scale: value, child: child),
+    child: Container(
+      width: 96,
+      height: 96,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        gradient: brandGradient,
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF8278C3).withValues(alpha: 0.40),
+            offset: const Offset(8, 8),
+            blurRadius: 24,
+          ),
+        ],
+      ),
+      child: const Icon(Icons.check_rounded, color: Colors.white, size: 46),
+    ),
+  );
 
-  const _Row({
-    required this.label,
-    required this.value,
-    this.detail,
-    this.monospaceValue = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
+  /// El comprobante que pide la prueba: lo que quedo guardado, tal cual.
+  Widget _receipt() => SoftCard(
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+    child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: eyebrow.copyWith(color: teal.withValues(alpha: 0.55), fontSize: 10)),
-        const SizedBox(height: 3),
-        Text(
-          value,
-          style: (monospaceValue ? tabular : const TextStyle()).copyWith(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-            color: deepAqua,
+        const Text(
+          'COMPROBANTE',
+          style: TextStyle(
+            fontSize: 10,
+            letterSpacing: 1.4,
+            color: muted,
+            fontWeight: FontWeight.w700,
           ),
         ),
-        if (detail != null)
-          Text(detail!, style: TextStyle(fontSize: 12, color: teal.withValues(alpha: 0.7))),
+        const SizedBox(height: 16),
+        _line('Origen', sourceName),
+        _line('Destino', destinationName),
+        _line('Valor', formatMoney(transfer.amountInCents)),
+        if (transfer.description != null) _line('Nota', transfer.description!),
+        _line('Fecha', formatDateTime(transfer.createdAt)),
+        _line('Referencia', transfer.id.split('-').first),
       ],
-    );
-  }
+    ),
+  );
+
+  Widget _line(String label, String value) => Padding(
+    padding: const EdgeInsets.only(bottom: 12),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: 92,
+          child: Text(
+            label,
+            style: const TextStyle(fontSize: 12.5, color: muted),
+          ),
+        ),
+        Expanded(
+          child: Text(
+            value,
+            textAlign: TextAlign.right,
+            style: const TextStyle(
+              fontSize: 13.5,
+              color: ink,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }

@@ -46,8 +46,8 @@ es automática en `AppDatabase.open()`.
 lib/
 ├── core/
 │   ├── result.dart              Result<T> sellado: Ok / Err
-│   ├── format.dart              pesos y fechas, sin dependencias
-│   ├── theme.dart               paleta y componentes
+│   ├── format.dart              pesos, fechas y teclado, sin dependencias
+│   ├── theme.dart               paleta lavanda y tokens
 │   ├── errors/failures.dart     Failure sellado
 │   └── di/                      get_it + injectable
 ├── domain/
@@ -64,11 +64,82 @@ lib/
 └── presentation/
     ├── blocs/                   un bloc por módulo
     ├── pages/                   pantallas
-    └── widgets/                 componentes compartidos
+    └── widgets/
+        ├── soft.dart            kit neumórfico: relieve, campos, botones
+        └── movement_row.dart    fila de movimiento, enviado o recibido
 ```
 
 La regla que sostiene todo: `domain` no importa nada de `data` ni de
 `presentation`, y solo `data` sabe que SQLite existe.
+
+## El diseño
+
+La interfaz replica un diseño neumórfico en lavanda y azul: tarjetas con
+relieve, campos hundidos, degradado de marca en los acentos, barra inferior de
+cinco ranuras con el botón de transferir elevado en el centro.
+
+Las siete pantallas son acceso, inicio, contactos, formulario de contacto,
+historial, perfil y el flujo de transferencia en tres pasos (a quién, cuánto con
+teclado propio, y confirmar) que termina en el comprobante.
+
+Tres cosas del diseño no existen en la base y se **derivan** en vez de guardarse:
+
+| Dato | De dónde sale |
+|---|---|
+| Enviado / recibido | de si la sesión es el origen o el destino |
+| Color del avatar | del hash del id, así el mismo usuario siempre se ve igual |
+| Contactos frecuentes | de contar transferencias, no de una tabla aparte |
+
+Falta, por no estar en el modelo: teléfono y número de cuenta del contacto (en
+su lugar se muestra el correo), y los seis colores elegibles del formulario.
+
+## El saldo
+
+El saldo **sí se guarda**: `users.balance_in_cents`. Cada cuenta nace con un
+cupo de apertura (`openingBalanceInCents`) porque no existe el concepto de
+consignación; esa constante es la única simplificación que queda.
+
+Una transferencia es **un solo hecho**, no tres:
+
+```dart
+_db.transaction((txn) async {
+  UPDATE users SET balance_in_cents = balance_in_cents - ? WHERE id = origen
+  UPDATE users SET balance_in_cents = balance_in_cents + ? WHERE id = destino
+  INSERT INTO transfers ...
+});
+```
+
+Si el débito deja el saldo en negativo, el `CHECK` con nombre
+`balance_not_negative` lanza y **se deshace todo**, incluido el movimiento. Eso
+está probado: la prueba verifica que tras un intento sin fondos no quedó ni el
+registro ni un saldo movido a medias.
+
+El caso de uso valida los fondos antes, por la misma razón de siempre: para
+decir *"El saldo no alcanza"* en vez de un error genérico de base.
+
+Dos detalles que salieron de escribirlo:
+
+- **Editar un usuario no escribe el saldo.** Si lo hiciera, cambiar un nombre
+  con una pantalla vieja abierta pisaría el saldo con el valor que esa pantalla
+  traía en memoria.
+- **El inicio no confía en el usuario de la sesión.** Ese objeto es una foto del
+  momento del login; el saldo fresco sale de la lista que el bloc recarga
+  después de cada movimiento.
+
+### La migración a la versión 2
+
+`onUpgrade` agrega la columna y **reconstruye los saldos desde el historial que
+ya estaba guardado** (cupo, más lo recibido, menos lo enviado). Sin eso una base
+vieja quedaría con todos en el mismo saldo, contradiciendo sus propios
+movimientos.
+
+Hay una prueba que crea una base con el esquema de la versión 1, le mete datos,
+y la abre con la app de hoy. Es el único camino que corre sobre datos que ya
+existen: si se rompe, se rompen los datos de alguien.
+
+Un límite honesto: SQLite no sabe agregar un `CHECK` con `ALTER TABLE`, así que
+en una base migrada la columna llega sin `balance_not_negative`. La regla se
+sigue validando en el caso de uso. Igualarlos exige recrear la tabla y copiar.
 
 ## Decisiones que vale la pena explicar
 
@@ -87,6 +158,8 @@ Distinguirlos permitiría averiguar qué correos están registrados.
 
 ```sql
 email             TEXT NOT NULL COLLATE NOCASE UNIQUE
+balance_in_cents  INTEGER NOT NULL DEFAULT 0
+                  CONSTRAINT balance_not_negative CHECK (balance_in_cents >= 0)
 amount_in_cents   INTEGER NOT NULL CHECK (amount_in_cents > 0)
 CHECK (source_user_id <> destination_user_id)
 source_user_id    TEXT NOT NULL REFERENCES users(id)
@@ -125,13 +198,19 @@ mejor con datos relacionales. `domain` no cambió ni una línea en esa migració
 flutter test
 ```
 
-78 pruebas en cuatro niveles:
+101 pruebas en cuatro niveles:
 
-- **Unitarias puras** — mappers, formato de dinero y fechas, hashing
+- **Unitarias puras** — mappers, formato de dinero, fechas y teclado, hashing
 - **Esquema SQL** — `UNIQUE`, ambos `CHECK`, llaves foráneas y orden del
   historial, contra SQLite real en memoria
 - **Casos de uso** — las reglas de negocio contra la base real
-- **Widget** — los tres flujos completos sobre las pantallas reales
+- **Widget** — los tres flujos completos y el shell con sus pestañas, sobre las
+  pantallas reales
+
+Los tests de pantalla usan una ventana de 430x1240 en vez del lienzo de 800x600
+que trae Flutter. No es cosmético: encontró cuatro desbordes reales que en un
+teléfono se habrían visto rotos (los chips del historial, el título de sección,
+el encabezado de página y la propia barra inferior).
 
 Los tests de casos de uso y de widget no usan mocks: montan los repositorios
 reales sobre SQLite en memoria. Sale menos código que escribir dobles y de paso
@@ -150,5 +229,8 @@ contradigan.
   `domain`, los casos de uso y los blocs no cambian.
 - **Cifrado en reposo.** SQLCipher, o cifrar la base con la llave en
   `flutter_secure_storage`.
-- **Saldos.** El enunciado solo pide registrar el movimiento, así que no hay
-  validación de fondos suficientes.
+- **De dónde entra la plata.** Hoy cada cuenta nace con un cupo. Con
+  consignaciones de verdad, el saldo se derivaría de una tabla de asientos y
+  dejaría de tener un punto de partida inventado.
+- **La tipografía.** El diseño usa Outfit; la app corre con la del sistema.
+  Empaquetar el `.ttf` en `assets/` es el arreglo, sin agregar dependencias.

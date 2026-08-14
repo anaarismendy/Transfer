@@ -1,4 +1,4 @@
-﻿import 'package:injectable/injectable.dart';
+import 'package:injectable/injectable.dart';
 
 import 'package:prueba_tecnica/core/errors/failures.dart';
 import 'package:prueba_tecnica/core/result.dart';
@@ -19,7 +19,11 @@ class UpdateUser {
     required String email,
     String? newPassword,
   }) async {
-    final invalid = validateUserInput(name: name, email: email, password: newPassword);
+    final invalid = validateUserInput(
+      name: name,
+      email: email,
+      password: newPassword,
+    );
     if (invalid != null) return Err(invalid);
 
     final existing = await _users.getById(id);
@@ -27,7 +31,9 @@ class UpdateUser {
       case Err(:final failure):
         return Err(failure);
       case Ok(:final value):
-        if (value == null) return const Err(NotFoundFailure('El usuario no existe'));
+        if (value == null) {
+          return const Err(NotFoundFailure('El usuario no existe'));
+        }
 
         final actualizado = value.copyWith(
           name: name.trim(),

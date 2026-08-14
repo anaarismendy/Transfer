@@ -1,5 +1,6 @@
 ﻿import 'package:injectable/injectable.dart';
 
+import 'package:prueba_tecnica/domain/opening_balance.dart';
 import 'package:prueba_tecnica/domain/repositories/user_repository.dart';
 import 'package:prueba_tecnica/domain/services/password_hasher.dart';
 
@@ -21,6 +22,7 @@ class SeedDefaultUser {
       name: 'Administrador',
       email: email,
       passwordHash: _hasher.hash(password),
+      balanceInCents: openingBalanceInCents,
     );
   }
 }

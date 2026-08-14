@@ -1,4 +1,4 @@
-﻿import 'package:injectable/injectable.dart';
+import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'package:prueba_tecnica/domain/entities/user.dart';
@@ -17,7 +17,12 @@ class UserLocalDataSource {
   }
 
   Future<User?> getById(String id) async {
-    final rows = await _db.query(_table, where: 'id = ?', whereArgs: [id], limit: 1);
+    final rows = await _db.query(
+      _table,
+      where: 'id = ?',
+      whereArgs: [id],
+      limit: 1,
+    );
     return rows.isEmpty ? null : userFromRow(rows.first);
   }
 
@@ -33,11 +38,22 @@ class UserLocalDataSource {
 
   Future<void> insert(User user) => _db.insert(_table, user.toRow());
 
-  Future<int> update(User user) =>
-      _db.update(_table, user.toRow(), where: 'id = ?', whereArgs: [user.id]);
+  /// El saldo queda fuera a proposito: solo se mueve dentro de la transaccion
+  /// de una transferencia. Si se escribiera aca, editar un nombre pisaria el
+  /// saldo con el que traia la entidad en memoria.
+  Future<int> update(User user) => _db.update(
+    _table,
+    user.toRow()..remove('balance_in_cents'),
+    where: 'id = ?',
+    whereArgs: [user.id],
+  );
 
-  Future<int> delete(String id) => _db.delete(_table, where: 'id = ?', whereArgs: [id]);
+  Future<int> delete(String id) =>
+      _db.delete(_table, where: 'id = ?', whereArgs: [id]);
 
   Future<int> count() async =>
-      Sqflite.firstIntValue(await _db.rawQuery('SELECT COUNT(*) FROM $_table')) ?? 0;
+      Sqflite.firstIntValue(
+        await _db.rawQuery('SELECT COUNT(*) FROM $_table'),
+      ) ??
+      0;
 }

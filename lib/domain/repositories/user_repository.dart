@@ -10,6 +10,7 @@ abstract class UserRepository {
     required String name,
     required String email,
     required String passwordHash,
+    required int balanceInCents,
   });
 
   Future<Result<User>> update(User user);

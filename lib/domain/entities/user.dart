@@ -9,5 +9,6 @@ abstract class User with _$User {
     required String name,
     required String email,
     required String passwordHash,
+    @Default(0) int balanceInCents,
   }) = _User;
 }
