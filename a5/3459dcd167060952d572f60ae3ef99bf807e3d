@@ -1,0 +1,21 @@
+lib/data/repositories/transfer_repository_impl.dart
+  s_30f2dcc9f590be::t_20d1a4c666c53d 1
+lib/data/repositories/user_repository_impl.dart
+  s_30f2dcc9f590be::t_942a6859f518d0 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "a53459dcd167060952d572f60ae3ef99bf807e3d",
+  "prompts": {},
+  "sessions": {
+    "s_30f2dcc9f590be": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e1b760ce-d719-4c2a-be60-b7963130558f",
+        "model": "unknown"
+      },
+      "human_author": "Ana Arismendy <anaarismendy120805@gmail.com>"
+    }
+  }
+}
